@@ -71,7 +71,7 @@ if($_POST){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <!-- si existe une variable $title, alors on affiche ici la valeur de $title. Mais si elle n'existe pas, alors on affiche une valeur par défaut: La Boutique -->
     <title><?= isset($title) ? $title : "Troc" ?></title>
-    <link rel="icon" type="image/svg" href="/troc_logo_.svg">
+    <link rel="icon" type="image/svg" href="/frontend/troc_logo_.svglogo_.svg">
 </head>
 <body>
 
