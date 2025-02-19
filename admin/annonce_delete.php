@@ -1,18 +1,11 @@
 <?php require_once('core/init.php') ?>
-
-<!--Место для кода-->
-
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../common/announcement/crud.php') ?>
 <?php
 /** @var PDO $pdo */
-
-$success = $pdo->query("DELETE FROM troc.annonce WHERE id_annonce = '{$_GET['id']}'");
-if (!$success) {
-    $alerts[ALERT_ERROR][] = 'Something went wrong while trying to delete the annonce.';
+try {
+    deleteAnnouncement((int)$_GET['id'], $pdo);
+    alertSuccess('Announcement successfully deleted.');
+} catch (PDOException $e) {
+    alertError('Something went wrong while trying to delete an announcement.');
 }
-?>
-<h2>Delete Annonce</h2>
-
-<!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+header('location: annonce_index.php');

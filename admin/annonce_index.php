@@ -1,9 +1,9 @@
 <?php require_once('core/init.php') ?>
+<?php require_once('../common/announcement/crud.php') ?>
 
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string> $alerts
  * @var array<array{
  *      id_annonce: int,
  *      titre: string,
@@ -20,8 +20,7 @@
  *      date_enregistrement: string,
  * }> $items
  */
-
-$items = $pdo->query("SELECT * FROM troc.annonce ORDER BY id_annonce DESC", PDO::FETCH_ASSOC);
+$items = announcementList($pdo);
 ?>
 <!--Место для кода-->
 

@@ -9,7 +9,7 @@
 
 $success = $pdo->query("DELETE FROM troc.categorie WHERE id_categorie = '{$_GET['id']}'");
 if (!$success) {
-    $alerts[ALERT_ERROR][] = 'Something went wrong while trying to delete a category.';
+    alertError('Something went wrong while trying to delete a category.');
 }
 ?>
     <h2>Delete category</h2>

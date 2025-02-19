@@ -1,9 +1,9 @@
 <?php require_once('core/init.php') ?>
-
+<?php require_once('../common/announcement/crud.php') ?>
+<?php require_once('../common/announcement/validation.php') ?>
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string[]> $alerts
  * @var array{
  *       id_annonce: int,
  *       titre: string,
@@ -20,38 +20,24 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
-$stmt = $pdo->query(sprintf("SELECT id_annonce, titre, description_courte, description_longue, prix, photo, pays, ville, adresse, cp, membre_id, categorie_id, date_enregistrement FROM troc.annonce WHERE id_annonce = %d", (int)$_GET['id']));
-
-if ($stmt->rowCount() > 0) {
-    $item = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-    $item = null;
+$item = announcementById((int)$_GET['id'], $pdo);
+if (is_null($item)) {
+    alertError('Does not exist.');
+    header('Location: annonce_index.php');
+    exit();
 }
-if (!empty($_POST)) {
-    // validate item
-
-    // TODO add validation
-
-    // save item
-    $stmt = $pdo->prepare("UPDATE troc.annonce SET titre = :titre, description_courte = :description_courte, description_longue = :description_longue, prix = :prix, photo = :photo, pays = :pays, ville = :ville, adresse = :adresse, cp = :cp, membre_id = :membre_id, categorie_id = :categorie_id, date_enregistrement = :date_enregistrement  WHERE id_annonce = :id_annonce ");
-    $stmt->bindValue(':titre', $_POST['titre'], PDO::PARAM_INT);
-    $stmt->bindValue(':description_courte', $_POST['description_courte']);
-    $stmt->bindValue(':description_longue', $_POST['description_longue']);
-    $stmt->bindValue(':prix', $_POST['prix'], PDO::PARAM_INT);
-    $stmt->bindValue(':photo', $_POST['photo']); // TODO save and get name of photo
-    $stmt->bindValue(':pays', $_POST['pays']);
-    $stmt->bindValue(':ville', $_POST['ville']);
-    $stmt->bindValue(':adresse', $_POST['adresse']);
-    $stmt->bindValue(':cp', $_POST['adresse']);
-    $stmt->bindValue(':membre_id', $_POST['membre_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':categorie_id', $_POST['categorie_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
-    if (!$stmt->execute()) {
-        $alerts[ALERT_ERROR][] = 'Something went wrong while updating annonce.';
+if (!empty($_POST) && isValid($_POST)) {
+    $data = $_POST;
+    // TODO save photo into assets/uploads/announcement/images and set $data['photo'] = 'namephoto.ext';
+    $data['id_annonce'] = (int)$_GET['id'];
+    if (updateAnnouncement($data, $pdo)) {
+        alertSuccess('Announcement successfully updated');
+        header('Location: annonce_index.php');
+        exit();
     }
+    alertError('Something went wrong while updating annonce.');
 }
 ?>
-
 <?php require_once('includes/_header.php') ?>
 <?php require_once('includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

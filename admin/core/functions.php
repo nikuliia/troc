@@ -12,3 +12,15 @@ function userConnectedAdmin(): bool
     return userConnected() && $_SESSION['user']['status'] == 1;
 }
 
+function dd(mixed $value): void
+{
+    echo '<pre>';
+    var_dump($value);
+    die();
+}
+
+function lengthBetween(string $value, int $min, int $max): bool
+{
+    $length = strlen($value);
+    return $length >= $min && $length <= $max;
+}

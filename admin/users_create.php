@@ -3,7 +3,6 @@
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string[]> $alerts
  * @var array{
  *       id_membre: int,
  *       pseudo: string,
@@ -34,7 +33,7 @@ if (!empty($_POST)) {
     $stmt->bindValue(':statut', $_POST['statut'], PDO::PARAM_INT);
     $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
     if (!$stmt->execute()) {
-        $alerts[ALERT_ERROR][] = 'Something went wrong while updating annonce.';
+        alertError('Something went wrong while updating annonce.');
     }
 }
 ?>

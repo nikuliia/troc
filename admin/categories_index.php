@@ -1,9 +1,8 @@
 <?php require_once('core/init.php') ?>
-
+<?php require_once('../common/categories/crud.php') ?>
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string> $alerts
  * @var array<array{
  *      id_annonce: int,
  *      titre: string,
@@ -21,7 +20,7 @@
  * }> $items
  */
 
-$items = $pdo->query("SELECT * FROM troc.categorie ORDER BY id_categorie DESC", PDO::FETCH_ASSOC);
+$items = categoryList($pdo);
 ?>
 <!--Место для кода-->
 
@@ -43,7 +42,7 @@ $items = $pdo->query("SELECT * FROM troc.categorie ORDER BY id_categorie DESC", 
         </thead>
         <tbody>
         <?php if (empty($items)) {
-            echo '<tr><td class="text-center" colspan="14">There is no data yet.</td></tr>';
+            echo '<tr><td class="text-center" colspan="4">There is no data yet.</td></tr>';
         }
         foreach ($items as $item) { ?>
             <tr>
@@ -53,20 +52,21 @@ $items = $pdo->query("SELECT * FROM troc.categorie ORDER BY id_categorie DESC", 
                 "<td>{$item['motscles']}</td>"
                 ?>
                 <td>
+                    <?php $queryParams = http_build_query(['id' => $item['id_categorie']]) ?>
                     <a class="text-decoration-none"
-                       href="<?= URL, 'categorie_read.php?', http_build_query(['id' => $item['id_categorie']]) ?>">
+                       href="<?= URL, 'categories_read.php?', $queryParams ?>">
                         <svg class="bi text-secondary">
                             <use xlink:href="#eye-fill"/>
                         </svg>
                     </a>
                     <a class="text-decoration-none"
-                       href="<?= URL, 'categorie_update.php?', http_build_query(['id' => $item['id_categorie']]) ?>">
+                       href="<?= URL, 'categories_update.php?', $queryParams ?>">
                         <svg class="bi text-primary">
                             <use xlink:href="#pencil-square"/>
                         </svg>
                     </a>
                     <a class="text-decoration-none"
-                       href="<?= URL, 'categorie_delete.php?', http_build_query(['id' => $item['id_categorie']]) ?>">
+                       href="<?= URL, 'categories_delete.php?', $queryParams ?>">
                         <svg class="bi text-danger">
                             <use xlink:href="#trash"/>
                         </svg>

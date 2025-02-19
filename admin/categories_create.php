@@ -1,27 +1,22 @@
 <?php require_once('core/init.php') ?>
-
+<?php require_once('../common/categories/crud.php') ?>
+<?php require_once('../common/categories/validation.php') ?>
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string[]> $alerts
  * @var array{
  *       id_categorie: int,
  *       titre: string,
  *       motscles: string,
  *  }|null $item
  */
-if (!empty($_POST)) {
-    // validate item
-
-    // TODO add validation
-
-    // save item
-    $stmt = $pdo->prepare("INSERT INTO troc.categorie (titre, motscles) VALUES (:titre, :motscles)");
-    $stmt->bindValue(':titre', $_POST['titre']);
-    $stmt->bindValue(':motscles', $_POST['motscles']);
-    if (!$stmt->execute()) {
-        $alerts[ALERT_ERROR][] = 'Something went wrong while updating categories.';
+if (!empty($_POST) && isValid($_POST)) {
+    if (createCategory($_POST, $pdo)) {
+        alertSuccess('Category successfully created.');
+        header('location: categories_index.php');
+        exit();
     }
+    alertError('Something went wrong while updating categories.');
 }
 ?>
 

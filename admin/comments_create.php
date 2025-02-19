@@ -3,7 +3,6 @@
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string[]> $alerts
  * @var array{
  *       id_commentaire: int,
  *       membre_id: int,
@@ -24,7 +23,7 @@ if (!empty($_POST)) {
     $stmt->bindValue(':commentaire', $_POST['commentaire']);
     $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
     if (!$stmt->execute()) {
-        $alerts[ALERT_ERROR][] = 'Something went wrong while updating comments.';
+        alertError('Something went wrong while updating comments.');
     }
 }
 ?>

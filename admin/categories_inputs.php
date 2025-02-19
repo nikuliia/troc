@@ -1,28 +1,17 @@
 <?php
 /**
  * @var array{
- *       id_annonce: int,
  *       titre: string,
- *       description_courte: string,
- *       description_longue: string,
- *       prix: int,
- *       photo: string,
- *       pays: string,
- *       ville: string,
- *       adresse: string,
- *       cp: int,
- *       membre_id: int,
- *       categorie_id: int,
- *       date_enregistrement: string,
+ *       motscles: string,
  *  }|null $item
-?? '' */
+ */
 ?>
 <div class="form-floating mb-3">
-    <input type="text" value="<?= $item['titre'] ?? '' ?>" class="form-control" id="id-titre" placeholder="titre">
-    <label for="id-titre">Categorie name</label>
+    <input type="text" name="titre" value="<?= $_POST['titre'] ?? $item['titre'] ?? '' ?>" class="form-control" id="id-titre" placeholder="Category name">
+    <label for="id-titre">Category name</label>
 </div>
 <div class="form-floating mb-3">
-    <input type="text" value="<?= $item['motcles'] ?? '' ?>" class="form-control" id="id-motcles" placeholder="motcles">
-    <label for="id-description_courte">Keywords</label>
+    <input type="text" name="motscles" value="<?= $_POST['motscles'] ?? $item['motscles'] ?? '' ?>" class="form-control" id="id-motscles" placeholder="Keywords">
+    <label for="id-motscles">Keywords</label>
 </div>
 <button class="btn btn-outline-success">Save</button>

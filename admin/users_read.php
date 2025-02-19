@@ -3,7 +3,6 @@
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string> $alerts
  * @var array{
  *       id_membre: int,
  *       pseudo: string,

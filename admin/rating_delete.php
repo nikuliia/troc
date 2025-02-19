@@ -9,7 +9,7 @@
 
 $success = $pdo->query("DELETE FROM troc.note WHERE id_note = '{$_GET['id']}'");
 if (!$success) {
-    $alerts[ALERT_ERROR][] = 'Something went wrong while trying to delete a rating.';
+    alertError('Something went wrong while trying to delete a rating.');
 }
 ?>
     <h2>Delete Rating</h2>

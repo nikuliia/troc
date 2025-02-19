@@ -3,7 +3,6 @@
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string[]> $alerts
  * @var array{
  *       id_note: int,
  *       membre_id1: int,
@@ -26,7 +25,7 @@ if (!empty($_POST)) {
     $stmt->bindValue(':avis', $_POST['avis']);
     $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
     if (!$stmt->execute()) {
-        $alerts[ALERT_ERROR][] = 'Something went wrong while updating a rating.';
+        alertError('Something went wrong while updating a rating.');
     }
 }
 ?>

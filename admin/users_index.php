@@ -3,7 +3,6 @@
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string> $alerts
  * @var array<array{
  *      id_annonce: int,
  *      titre: string,

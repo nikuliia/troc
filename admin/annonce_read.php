@@ -1,9 +1,9 @@
 <?php require_once('core/init.php') ?>
+<?php require_once('../common/announcement/crud.php') ?>
 
 <?php
 /**
  * @var PDO $pdo
- * @var array<string, string> $alerts
  * @var array{
  *       id_annonce: int,
  *       titre: string,
@@ -20,13 +20,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
-$stmt = $pdo->query(sprintf("SELECT id_annonce, titre, description_courte, description_longue, prix, photo, pays, ville, adresse, cp, membre_id, categorie_id, date_enregistrement FROM troc.annonce WHERE id_annonce = %d", (int)$_GET['id']));
+$item = announcementById((int)$_GET['id'], $pdo);
 
-if ($stmt->rowCount() > 0) {
-    $item = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-    $item = null;
-}
 ?>
 
 <?php require_once('includes/_header.php') ?>
@@ -36,7 +31,7 @@ if ($stmt->rowCount() > 0) {
 </div>
 <?php if ($item) { ?>
     <div class="card">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="..." class="card-img-top" alt="<?= $item['titre'] ?>">
         <div class="card-body">
             <h5 class="card-title">ID: <?= $item['id_annonce'] ?></h5>
             <p class="card-text">titre: <?= $item['titre'] ?></p>
