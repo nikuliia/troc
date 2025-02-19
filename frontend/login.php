@@ -1,8 +1,8 @@
 <?php
 
-require_once('include/init.php');
+require_once('includes_1/init.php');
 
-require_once('include/header.php');
+require_once('includes_1/_header_1.php');
 ?>
 
-<?php require_once('include/header.php'); ?>
+<?php require_once('includes_1/_header_1.php'); ?>

@@ -2,7 +2,7 @@
 
 /** @var string $validate */
 
-require_once('include/init.php');
+require_once('includes_1/init.php');
 
 //$title = "Profil de " . $_SESSION['user']['nickname'];
 
@@ -25,7 +25,7 @@ if(isset($_GET['action']) && $_GET['action'] === 'validate'){
                 </div>';
 }
 
-require_once('include/header.php')
+require_once('includes_1/_header_1.php')
 ?>
     <!-- ternaire pour personnaliser le <h2> selon que le user connecté est admin ou non -->
     <h2 class="text-center my-5"><span class="badge badge-dark text-wrap p-3">Hello <?= (userConnectedAdmin()) ? $_SESSION['user']['nickname'] . ", you are admin of the website" : $_SESSION['user']['nickname'] ?></span></h2>
@@ -56,4 +56,4 @@ require_once('include/header.php')
     </div>
 
 <?php
-require_once('include/footer.php');
+require_once('includes_1/_footer_1.php');

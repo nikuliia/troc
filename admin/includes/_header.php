@@ -62,9 +62,42 @@
                     </ul>
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/users_index.php">
+                                <svg class="bi"><use xlink:href="#people"/></svg>
+                                Users
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
                             <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/annonce_index.php">
-                                <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-                                Annonce
+                                <svg class="bi"><use xlink:href="#table"/></svg>
+                                Listings
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/categories_index.php">
+                                <svg class="bi"><use xlink:href="#tags"/></svg>
+                                Categories
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/comments_index.php">
+                                <svg class="bi"><use xlink:href="#comments"/></svg>
+                                Comments
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column mb-auto">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/rating_index.php">
+                                <svg class="bi"><use xlink:href="#star"/></svg>
+                                Rating
                             </a>
                         </li>
                     </ul>

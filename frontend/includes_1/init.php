@@ -40,4 +40,4 @@ foreach($_POST as $key => $value){
     $_POST[$key] = htmlspecialchars(trim($value));
 }
 
-require_once('functions.php');
+require_once('functions_1.php');

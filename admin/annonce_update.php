@@ -33,7 +33,7 @@ if (!empty($_POST)) {
     // TODO add validation
 
     // save item
-    $stmt = $pdo->prepare("UPDATE troc.annonce SET titre = :titre, description_courte = :description_courte, description_longue = :description_longue, prix = :prix, photo = :photo, pays = :pays, ville = :ville, adresse = :adresse, cp = :cp, membre_id = :membre_id, categorie_id = :categorie_id, date_enregistrement = :date_enregistrement  WHERE membre_id = :membre_id ");
+    $stmt = $pdo->prepare("UPDATE troc.annonce SET titre = :titre, description_courte = :description_courte, description_longue = :description_longue, prix = :prix, photo = :photo, pays = :pays, ville = :ville, adresse = :adresse, cp = :cp, membre_id = :membre_id, categorie_id = :categorie_id, date_enregistrement = :date_enregistrement  WHERE id_annonce = :id_annonce ");
     $stmt->bindValue(':titre', $_POST['titre'], PDO::PARAM_INT);
     $stmt->bindValue(':description_courte', $_POST['description_courte']);
     $stmt->bindValue(':description_longue', $_POST['description_longue']);

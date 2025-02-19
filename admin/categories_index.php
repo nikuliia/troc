@@ -21,33 +21,23 @@
  * }> $items
  */
 
-$items = $pdo->query("SELECT * FROM troc.annonce ORDER BY id_annonce DESC", PDO::FETCH_ASSOC);
+$items = $pdo->query("SELECT * FROM troc.categorie ORDER BY id_categorie DESC", PDO::FETCH_ASSOC);
 ?>
 <!--Место для кода-->
 
 <?php require_once('includes/_header.php') ?>
 <?php require_once('includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Listing</h1>
-    <a class="btn btn-success" href="annonce_create.php">Add</a>
+    <h1 class="h2">Categories</h1>
+    <a class="btn btn-success" href="categories_create.php">Add</a>
 </div>
 <div class="table-responsive small">
     <table class="table table-striped table-sm">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">titre</th>
-            <th scope="col">description_courte</th>
-            <th scope="col">description_longue</th>
-            <th scope="col">prix</th>
-            <th scope="col">photo</th>
-            <th scope="col">pays</th>
-            <th scope="col">ville</th>
-            <th scope="col">adresse</th>
-            <th scope="col">cp</th>
-            <th scope="col">membre_id</th>
-            <th scope="col">categorie_id</th>
-            <th scope="col">date_enregistrement</th>
+            <th scope="col">Title</th>
+            <th scope="col">Keywords</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -58,28 +48,28 @@ $items = $pdo->query("SELECT * FROM troc.annonce ORDER BY id_annonce DESC", PDO:
         foreach ($items as $item) { ?>
             <tr>
                 <?= '<tr>',
-                "<td>{$item['id_annonce']}</td>",
+                "<td>{$item['id_categorie']}</td>",
                 "<td>{$item['titre']}</td>",
-                "<td>{$item['description_courte']}</td>",
-                "<td>{$item['description_longue']}</td>",
-                "<td>{$item['prix']}</td>",
-                "<td>{$item['photo']}</td>",
-                "<td>{$item['pays']}</td>",
-                "<td>{$item['ville']}</td>",
-                "<td>{$item['adresse']}</td>",
-                "<td>{$item['cp']}</td>",
-                "<td>{$item['membre_id']}</td>",
-                "<td>{$item['categorie_id']}</td>",
-                "<td>{$item['date_enregistrement']}</td>" ?>
+                "<td>{$item['motscles']}</td>"
+                ?>
                 <td>
-                    <a class="text-decoration-none" href="<?= URL, 'annonce_read.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
-                        <svg class="bi text-secondary"><use xlink:href="#eye-fill"/></svg>
+                    <a class="text-decoration-none"
+                       href="<?= URL, 'categorie_read.php?', http_build_query(['id' => $item['id_categorie']]) ?>">
+                        <svg class="bi text-secondary">
+                            <use xlink:href="#eye-fill"/>
+                        </svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'annonce_update.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
-                        <svg class="bi text-primary"><use xlink:href="#pencil-square"/></svg>
+                    <a class="text-decoration-none"
+                       href="<?= URL, 'categorie_update.php?', http_build_query(['id' => $item['id_categorie']]) ?>">
+                        <svg class="bi text-primary">
+                            <use xlink:href="#pencil-square"/>
+                        </svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'annonce_delete.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
-                        <svg class="bi text-danger"><use xlink:href="#trash"/></svg>
+                    <a class="text-decoration-none"
+                       href="<?= URL, 'categorie_delete.php?', http_build_query(['id' => $item['id_categorie']]) ?>">
+                        <svg class="bi text-danger">
+                            <use xlink:href="#trash"/>
+                        </svg>
                     </a>
                 </td>
             </tr>

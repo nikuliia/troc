@@ -26,19 +26,7 @@ if (!empty($_POST)) {
     // TODO add validation
 
     // save item
-    $stmt = $pdo->prepare("insert into troc.annonce (
-                            titre,
-                            description_courte,
-                            description_longue,
-                            prix,
-                            photo,
-                            pays,
-                            ville,
-                            adresse,
-                            cp,
-                            membre_id,
-                            categorie_id,
-                            date_enregistrement
+    $stmt = $pdo->prepare("INSERT INTO troc.annonce (titre, description_courte, description_longue, prix, photo, pays, ville, adresse, cp, membre_id, categorie_id, date_enregistrement
 ) values (:titre, :description_courte, :description_longue, :prix, :photo, :pays, :ville, :adresse, :cp, :membre_id, :categorie_id, :date_enregistrement)");
     $stmt->bindValue(':titre', $_POST['titre'], PDO::PARAM_INT);
     $stmt->bindValue(':description_courte', $_POST['description_courte']);

@@ -3,11 +3,11 @@
 /** @var string $produit */
 /** @var string $titrePublic */
 
-require_once('include/init.php');
+require_once('includes_1/init.php');
 
 //$title = "test";
 
-require_once('include/header.php')
+require_once('includes_1/_header_1.php')
 ?>
 
 
@@ -128,5 +128,5 @@ require_once('include/header.php')
     <div class="container">
 
 <?php
-require_once('include/footer.php')
+require_once('includes_1/_footer_1.php')
 ?>
