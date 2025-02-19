@@ -1,4 +1,4 @@
-<?php require_once('core/init.php') ?>
+<?php require_once('../core/init.php') ?>
 
 <?php
 /**
@@ -20,25 +20,25 @@
  * }> $items
  */
 
-$items = $pdo->query("SELECT * FROM troc.commentaire ORDER BY id_commentaire DESC", PDO::FETCH_ASSOC);
+$items = $pdo->query("SELECT * FROM troc.note ORDER BY id_note DESC", PDO::FETCH_ASSOC);
 ?>
-
 <!--Место для кода-->
 
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../includes/_header.php') ?>
+<?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Comments</h1>
-    <a class="btn btn-success" href="comments_create.php">Add</a>
+    <h1 class="h2">Rating</h1>
+    <a class="btn btn-success" href="create.php">Add</a>
 </div>
 <div class="table-responsive small">
     <table class="table table-striped table-sm">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">User ID</th>
-            <th scope="col">Listing ID</th>
-            <th scope="col">Comment</th>
+            <th scope="col">User ID_1</th>
+            <th scope="col">User ID_2</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Review</th>
             <th scope="col">Registration Date</th>
             <th scope="col">Actions</th>
         </tr>
@@ -50,19 +50,20 @@ $items = $pdo->query("SELECT * FROM troc.commentaire ORDER BY id_commentaire DES
         foreach ($items as $item) { ?>
             <tr>
                 <?= '<tr>',
-                "<td>{$item['id_commentaire']}</td>",
-                "<td>{$item['membre_id']}</td>",
-                "<td>{$item['annonce_id']}</td>",
-                "<td>{$item['commentaire']}</td>",
+                "<td>{$item['id_note']}</td>",
+                "<td>{$item['membre_id1']}</td>",
+                "<td>{$item['membre_id2']}</td>",
+                "<td>{$item['note']}</td>",
+                "<td>{$item['avis']}</td>",
                 "<td>{$item['date_enregistrement']}</td>" ?>
                 <td>
-                    <a class="text-decoration-none" href="<?= URL, 'commentaire_read.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'read.php?', http_build_query(['id' => $item['id_rating']]) ?>">
                         <svg class="bi text-secondary"><use xlink:href="#eye-fill"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'commentaire_update.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'update.php?', http_build_query(['id' => $item['id_rating']]) ?>">
                         <svg class="bi text-primary"><use xlink:href="#pencil-square"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'commentaire_delete.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'delete.php?', http_build_query(['id' => $item['id_rating']]) ?>">
                         <svg class="bi text-danger"><use xlink:href="#trash"/></svg>
                     </a>
                 </td>
@@ -81,4 +82,4 @@ $items = $pdo->query("SELECT * FROM troc.commentaire ORDER BY id_commentaire DES
     </nav>
 </div>
 <!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+<?php require_once('../includes/_footer.php'); ?>

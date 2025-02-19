@@ -1,5 +1,5 @@
-<?php require_once('core/init.php') ?>
-<?php require_once('../common/categories/crud.php') ?>
+<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/categories/crud.php') ?>
 <?php
 /**
  * @var PDO $pdo
@@ -24,11 +24,11 @@ $items = categoryList($pdo);
 ?>
 <!--Место для кода-->
 
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../includes/_header.php') ?>
+<?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Categories</h1>
-    <a class="btn btn-success" href="categories_create.php">Add</a>
+    <a class="btn btn-success" href="create.php">Add</a>
 </div>
 <div class="table-responsive small">
     <table class="table table-striped table-sm">
@@ -54,19 +54,19 @@ $items = categoryList($pdo);
                 <td>
                     <?php $queryParams = http_build_query(['id' => $item['id_categorie']]) ?>
                     <a class="text-decoration-none"
-                       href="<?= URL, 'categories_read.php?', $queryParams ?>">
+                       href="<?= 'read.php?', $queryParams ?>">
                         <svg class="bi text-secondary">
                             <use xlink:href="#eye-fill"/>
                         </svg>
                     </a>
                     <a class="text-decoration-none"
-                       href="<?= URL, 'categories_update.php?', $queryParams ?>">
+                       href="<?= 'update.php?', $queryParams ?>">
                         <svg class="bi text-primary">
                             <use xlink:href="#pencil-square"/>
                         </svg>
                     </a>
                     <a class="text-decoration-none"
-                       href="<?= URL, 'categories_delete.php?', $queryParams ?>">
+                       href="<?= 'delete.php?', $queryParams ?>">
                         <svg class="bi text-danger">
                             <use xlink:href="#trash"/>
                         </svg>
@@ -87,4 +87,4 @@ $items = categoryList($pdo);
     </nav>
 </div>
 <!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+<?php require_once('../includes/_footer.php'); ?>

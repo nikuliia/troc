@@ -1,4 +1,4 @@
-<?php require_once('core/init.php') ?>
+<?php require_once('../core/init.php') ?>
 
 <?php
 /**
@@ -24,11 +24,11 @@ $items = $pdo->query("SELECT * FROM troc.membre ORDER BY id_membre DESC", PDO::F
 ?>
 <!--Место для кода-->
 
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../includes/_header.php') ?>
+<?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Users</h1>
-    <a class="btn btn-success" href="users_create.php">Add</a>
+    <a class="btn btn-success" href="create.php">Add</a>
 </div>
 <div class="table-responsive small">
     <table class="table table-striped table-sm">
@@ -67,13 +67,13 @@ $items = $pdo->query("SELECT * FROM troc.membre ORDER BY id_membre DESC", PDO::F
                 "<td>{$item['cp']}</td>",
                 "<td>{$item['date_enregistrement']}</td>" ?>
                 <td>
-                    <a class="text-decoration-none" href="<?= URL, 'users_read.php?', http_build_query(['id' => $item['id_membre']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'read.php?', http_build_query(['id' => $item['id_membre']]) ?>">
                         <svg class="bi text-secondary"><use xlink:href="#eye-fill"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'users_update.php?', http_build_query(['id' => $item['id_membre']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'update.php?', http_build_query(['id' => $item['id_membre']]) ?>">
                         <svg class="bi text-primary"><use xlink:href="#pencil-square"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'users_delete.php?', http_build_query(['id' => $item['id_membre']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'delete.php?', http_build_query(['id' => $item['id_membre']]) ?>">
                         <svg class="bi text-danger"><use xlink:href="#trash"/></svg>
                     </a>
                 </td>
@@ -92,5 +92,5 @@ $items = $pdo->query("SELECT * FROM troc.membre ORDER BY id_membre DESC", PDO::F
     </nav>
 </div>
 <!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+<?php require_once('../includes/_footer.php'); ?>
 

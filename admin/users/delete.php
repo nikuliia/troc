@@ -1,9 +1,9 @@
-<?php require_once('core/init.php') ?>
+<?php require_once('../core/init.php') ?>
 
     <!--Место для кода-->
 
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../includes/_header.php') ?>
+<?php require_once('../includes/_alerts.php') ?>
 <?php
 /** @var PDO $pdo */
 
@@ -15,4 +15,4 @@ if (!$success) {
     <h2>Delete Rating</h2>
 
     <!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+<?php require_once('../includes/_footer.php'); ?>

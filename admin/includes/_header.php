@@ -6,8 +6,8 @@
     <meta name="description" content="">
     <title>Dashboard</title>
 
-    <link href="../assets/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/dashboard.css" rel="stylesheet">
+    <link href="../../assets/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/dashboard.css" rel="stylesheet">
     <!-- Favicons -->
     <style>
         .bi {
@@ -54,7 +54,7 @@
                 <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="http://localhost/troc/admin/index.php">
+                            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="http://localhost/troc/admin/dashboard/index.php">
                                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
                                 Dashboard
                             </a>
@@ -62,7 +62,7 @@
                     </ul>
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/users_index.php">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/users/index.php">
                                 <svg class="bi"><use xlink:href="#people"/></svg>
                                 Users
                             </a>
@@ -70,7 +70,7 @@
                     </ul>
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/annonce_index.php">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/annonce/index.php">
                                 <svg class="bi"><use xlink:href="#table"/></svg>
                                 Listings
                             </a>
@@ -79,7 +79,7 @@
 
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/categories_index.php">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/categories/index.php">
                                 <svg class="bi"><use xlink:href="#tags"/></svg>
                                 Categories
                             </a>
@@ -87,7 +87,7 @@
                     </ul>
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/comments_index.php">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/comments/index.php">
                                 <svg class="bi"><use xlink:href="#comments"/></svg>
                                 Comments
                             </a>
@@ -95,7 +95,7 @@
                     </ul>
                     <ul class="nav flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/rating_index.php">
+                            <a class="nav-link d-flex align-items-center gap-2" href="http://localhost/troc/admin/rating/index.php">
                                 <svg class="bi"><use xlink:href="#star"/></svg>
                                 Rating
                             </a>

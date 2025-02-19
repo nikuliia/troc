@@ -1,6 +1,6 @@
-<?php require_once('core/init.php') ?>
-<?php require_once('../common/announcement/crud.php') ?>
-<?php require_once('../common/announcement/validation.php') ?>
+<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/announcement/crud.php') ?>
+<?php require_once('../../common/announcement/validation.php') ?>
 <?php
 /**
  * @var PDO $pdo
@@ -23,7 +23,7 @@
 $item = announcementById((int)$_GET['id'], $pdo);
 if (is_null($item)) {
     alertError('Does not exist.');
-    header('Location: annonce_index.php');
+    header('Location: index.php');
     exit();
 }
 if (!empty($_POST) && isValid($_POST)) {
@@ -32,20 +32,20 @@ if (!empty($_POST) && isValid($_POST)) {
     $data['id_annonce'] = (int)$_GET['id'];
     if (updateAnnouncement($data, $pdo)) {
         alertSuccess('Announcement successfully updated');
-        header('Location: annonce_index.php');
+        header('Location: index.php');
         exit();
     }
     alertError('Something went wrong while updating annonce.');
 }
 ?>
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../includes/_header.php') ?>
+<?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Update Annonce</h1>
 </div>
 
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('annonce_inputs.php') ?>
+    <?php require_once('inputs.php') ?>
 </form>
 <!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+<?php require_once('../includes/_footer.php'); ?>

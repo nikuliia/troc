@@ -1,4 +1,4 @@
-<?php require_once('core/init.php') ?>
+<?php require_once('../core/init.php') ?>
 
 <?php
 /**
@@ -20,8 +20,8 @@ if ($stmt->rowCount() > 0) {
 }
 ?>
 
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../includes/_header.php') ?>
+<?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Comment #<?= $item['id_commentaire'] ?></h1>
 </div>
@@ -36,10 +36,10 @@ if ($stmt->rowCount() > 0) {
             <p class="card-text"><?= $item['date_enregistrement'] ?></p>
         </div>
         <div class="card-footer">
-            <a href="<?= URL, 'comments_update.php?', http_build_query(['id' => $item['id_commentaire']]) ?>" class="btn btn-primary w-100">Update</a>
+            <a href="<?= 'update.php?', http_build_query(['id' => $item['id_commentaire']]) ?>" class="btn btn-primary w-100">Update</a>
         </div>
     </div>
 <?php } ?>
 
 <!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+<?php require_once('../includes/_footer.php'); ?>

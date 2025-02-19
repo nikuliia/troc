@@ -1,5 +1,5 @@
-<?php require_once('core/init.php') ?>
-<?php require_once('../common/announcement/crud.php') ?>
+<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/announcement/crud.php') ?>
 
 <?php
 /**
@@ -24,11 +24,11 @@ $items = announcementList($pdo);
 ?>
 <!--Место для кода-->
 
-<?php require_once('includes/_header.php') ?>
-<?php require_once('includes/_alerts.php') ?>
+<?php require_once('../includes/_header.php') ?>
+<?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Listing</h1>
-    <a class="btn btn-success" href="annonce_create.php">Add</a>
+    <a class="btn btn-success" href="create.php">Add</a>
 </div>
 <div class="table-responsive small">
     <table class="table table-striped table-sm">
@@ -71,13 +71,13 @@ $items = announcementList($pdo);
                 "<td>{$item['categorie_id']}</td>",
                 "<td>{$item['date_enregistrement']}</td>" ?>
                 <td>
-                    <a class="text-decoration-none" href="<?= URL, 'annonce_read.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'read.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
                         <svg class="bi text-secondary"><use xlink:href="#eye-fill"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'annonce_update.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'update.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
                         <svg class="bi text-primary"><use xlink:href="#pencil-square"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= URL, 'annonce_delete.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'delete.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
                         <svg class="bi text-danger"><use xlink:href="#trash"/></svg>
                     </a>
                 </td>
@@ -96,4 +96,4 @@ $items = announcementList($pdo);
     </nav>
 </div>
 <!--            Content end -->
-<?php require_once('includes/_footer.php'); ?>
+<?php require_once('../includes/_footer.php'); ?>

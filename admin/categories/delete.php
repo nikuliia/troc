@@ -1,5 +1,5 @@
-<?php require_once('core/init.php') ?>
-<?php require_once('../common/categories/crud.php') ?>
+<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/categories/crud.php') ?>
 <?php
 /** @var PDO $pdo */
 try {
@@ -8,4 +8,4 @@ try {
 } catch (PDOException $e) {
     alertError('Something went wrong while trying to delete a category.');
 }
-header('location: categories_index.php');
+header('location: index.php');
