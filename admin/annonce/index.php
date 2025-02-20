@@ -77,7 +77,7 @@ $items = announcementList($pdo);
                     <a class="text-decoration-none" href="<?= 'update.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
                         <svg class="bi text-primary"><use xlink:href="#pencil-square"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= 'delete.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
+                    <a class="text-decoration-none" onclick="if (confirm('Delete selected item?')){return true;}else{window.event.stopPropagation(); window.event.preventDefault();}" href="<?= 'delete.php?', http_build_query(['id' => $item['id_annonce']]) ?>">
                         <svg class="bi text-danger"><use xlink:href="#trash"/></svg>
                     </a>
                 </td>

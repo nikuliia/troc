@@ -34,7 +34,7 @@ function announcementList(PDO $pdo): array
  *      pays: string,
  *      ville: string,
  *      adresse: string,
- *      adresse: string,
+ *      cp: string,
  *      membre_id: int,
  *      categorie_id: int,
  *  } $data
@@ -42,19 +42,26 @@ function announcementList(PDO $pdo): array
  */
 function updateAnnouncement(array $data, PDO $pdo): bool
 {
-    $stmt = $pdo->prepare("UPDATE troc.annonce SET titre = :titre, description_courte = :description_courte, description_longue = :description_longue, prix = :prix, photo = :photo, pays = :pays, ville = :ville, adresse = :adresse, cp = :cp, membre_id = :membre_id, categorie_id = :categorie_id WHERE id_annonce = :id_annonce ");
+    if ($data['photo']) {
+        $stmt = $pdo->prepare("UPDATE troc.annonce SET photo = :photo WHERE id_annonce = :id_annonce ");
+        $stmt->bindValue(':photo', $data['photo']); // TODO save and get name of photo
+        $stmt->bindValue(':id_annonce', $data['id_annonce']); // TODO save and get name of photo
+        $stmt->execute();
+    }
+
+    $stmt = $pdo->prepare("UPDATE troc.annonce SET titre = :titre, description_courte = :description_courte, description_longue = :description_longue, prix = :prix, pays = :pays, ville = :ville, adresse = :adresse, cp = :cp, membre_id = :membre_id, categorie_id = :categorie_id WHERE id_annonce = :id_annonce ");
     $stmt->bindValue(':titre', $data['titre'], PDO::PARAM_INT);
     $stmt->bindValue(':description_courte', $data['description_courte']);
     $stmt->bindValue(':description_longue', $data['description_longue']);
     $stmt->bindValue(':prix', $data['prix'], PDO::PARAM_INT);
-    $stmt->bindValue(':photo', $data['photo']); // TODO save and get name of photo
     $stmt->bindValue(':pays', $data['pays']);
     $stmt->bindValue(':ville', $data['ville']);
     $stmt->bindValue(':adresse', $data['adresse']);
-    $stmt->bindValue(':cp', $data['adresse']);
+    $stmt->bindValue(':cp', $data['cp']);
     $stmt->bindValue(':membre_id', $data['membre_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':categorie_id', $data['id_categorie'], PDO::PARAM_INT);
-    $stmt->bindValue(':date_enregistrement', date('Y-m-d'));
+    $stmt->bindValue(':categorie_id', $data['categorie_id'], PDO::PARAM_INT);
+    $stmt->bindValue(':id_annonce', $data['id_annonce'], PDO::PARAM_INT);
+
     return $stmt->execute();
 }
 
@@ -69,7 +76,7 @@ function updateAnnouncement(array $data, PDO $pdo): bool
  *     pays: string,
  *     ville: string,
  *     adresse: string,
- *     adresse: string,
+ *     cp: string,
  *     membre_id: int,
  *     categorie_id: int,
  * } $data
@@ -82,11 +89,11 @@ function createAnnouncement(array $data, PDO $pdo): bool
     $stmt->bindValue(':description_courte', $data['description_courte']);
     $stmt->bindValue(':description_longue', $data['description_longue']);
     $stmt->bindValue(':prix', $data['prix'], PDO::PARAM_INT);
-    $stmt->bindValue(':photo', $data['photo']); // TODO save and get name of photo
+    $stmt->bindValue(':photo', $data['photo']);
     $stmt->bindValue(':pays', $data['pays']);
     $stmt->bindValue(':ville', $data['ville']);
     $stmt->bindValue(':adresse', $data['adresse']);
-    $stmt->bindValue(':cp', $data['adresse']);
+    $stmt->bindValue(':cp', $data['cp']);
     $stmt->bindValue(':membre_id', $data['membre_id'], PDO::PARAM_INT);
     $stmt->bindValue(':categorie_id', $data['categorie_id'], PDO::PARAM_INT);
     $stmt->bindValue(':date_enregistrement', date('Y-m-d'));

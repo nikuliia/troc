@@ -16,7 +16,7 @@
  *      date_enregistrement: string
  *  } $data
 */
-function isValid(array $data, array $files): bool
+function isValid(array $data): bool
 {
     $valid = true;
     if (!isset($data['titre']) || strlen($data['titre']) < 3 || strlen($data['titre']) > 255) {
@@ -36,26 +36,6 @@ function isValid(array $data, array $files): bool
         $valid = false;
     }
 
-    // Image Validation (if uploaded)
-    if (!empty($files['photo']['name'])) {
-        $authorizedExtensions = ['bmp', 'png', 'jpeg', 'jpg', 'webp'];
-        $maxFileSize = 2 * 1024 * 1024; // 2MB limit
-        $fileExtension = strtolower(pathinfo($files['photo']['name'], PATHINFO_EXTENSION));
-        $fileSize = $files['photo']['size'];
-
-        // Checking File Extension (if the value is not found in the array => alert)
-        if (!in_array($fileExtension, $authorizedExtensions, true)){
-            alertError('Invalid photo extension (only .bmp, .png, .jpeg, .jpg, .webp are allowed).');
-            $valid = false;
-        }
-
-        // Checking file size
-        if ($fileSize > $maxFileSize) {
-            alertError('File size exceeds the 2MB limit.');
-            $valid = false;
-        }
-    }
-
     if (!isset($data['pays']) || strlen($data['pays']) < 3 || strlen($data['pays']) > 20) {
         alertError('Invalid country name format.');
         $valid = false;
@@ -68,17 +48,42 @@ function isValid(array $data, array $files): bool
         alertError('Invalid address format. It should contain no more than 50 characters.');
         $valid = false;
     }
-    if (!is_numeric($data['cp'] === 5)) {
+    if (!isset($data['cp']) || !preg_match('#^\d{5}$#', $data['cp'])) {
         alertError('Invalid zip code format. It should be a 5 digit number.');
         $valid = false;
     }
-    if (!is_numeric($data['membre_id'] === 3)) {
+    if (!is_numeric($data['membre_id'])) {
         alertError('Invalid user ID. It should be a 3 digit number.');
         $valid = false;
     }
-    if (!is_numeric($data['categorie_id'] === 3)) {
+    if (!is_numeric($data['categorie_id'])) {
         alertError('Invalid user ID. It should be a 3 digit number.');
         $valid = false;
     }
     return $valid;
+}
+
+function isValidPhoto(): bool
+{
+    if (empty($_FILES['photo']['name'])) {
+        alertError('Empty photo');
+        return false;
+    }
+
+    $maxFileSize = 2 * 1024 * 1024; // 2MB limit
+    $fileExtension = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+
+    // Checking File Extension (if the value is not found in the array => alert)
+    if (!in_array($fileExtension, ['bmp', 'png', 'jpeg', 'jpg', 'webp'], true)){
+        alertError('Invalid photo extension (only .bmp, .png, .jpeg, .jpg, .webp are allowed).');
+        return false;
+    }
+
+    // Checking file size
+    if ($_FILES['photo']['size'] > $maxFileSize) {
+        alertError('File size exceeds the 2MB limit.');
+        return false;
+    }
+
+    return true;
 }

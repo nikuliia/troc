@@ -65,7 +65,7 @@ $items = categoryList($pdo);
                             <use xlink:href="#pencil-square"/>
                         </svg>
                     </a>
-                    <a class="text-decoration-none"
+                    <a class="text-decoration-none" onclick="if (confirm('Delete selected item?')){return true;}else{window.event.stopPropagation(); window.event.preventDefault();};"
                        href="<?= 'delete.php?', $queryParams ?>">
                         <svg class="bi text-danger">
                             <use xlink:href="#trash"/>

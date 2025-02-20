@@ -30,8 +30,8 @@ $item = announcementById((int)$_GET['id'], $pdo);
     <h1 class="h2">Annonce #<?= $item['id_annonce'] ?></h1>
 </div>
 <?php if ($item) { ?>
-    <div class="card">
-        <img src="..." class="card-img-top" alt="<?= $item['titre'] ?>">
+    <div class="card" style="max-width: 300px">
+        <img src="<?= FILES_URL, '/announcement/', $item['photo'] ?>" class="card-img-top" alt="<?= $item['titre'] ?>">
         <div class="card-body">
             <h5 class="card-title">Comment ID: <?= $item['id_annonce'] ?></h5>
             <p class="card-text">Title: <?= $item['titre'] ?></p>

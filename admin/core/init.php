@@ -9,6 +9,8 @@ error_reporting(E_ALL);
 <?php require_once('functions.php') ?>
 <?php
 const URL = 'http://localhost/troc/admin/';
+const FILES_PATH = __DIR__ . '/../../assets/uploads/images/';
+const FILES_URL = 'http://localhost/troc/assets/uploads/images/';
 
 // boucle foreach qui va protéger toutes les valeurs provenant de l'URL avec htmlspecialchars pour contrer les injections SQL dans l'URL
 foreach($_GET as $key => $value){

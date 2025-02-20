@@ -37,7 +37,7 @@ if (!empty($_POST) && isValid($_POST)) {
 </div>
 
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('../categories/inputs.php') ?>
+    <?php require_once('inputs.php') ?>
 </form>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

@@ -26,16 +26,30 @@ if (is_null($item)) {
     header('Location: index.php');
     exit();
 }
-if (!empty($_POST) && isValid($_POST)) {
+$isValid = !empty($_POST) && isValid($_POST);
+$sentFile = !empty($_FILES['photo']['name']);
+if ($sentFile) {
+    $isValid = $isValid && isValidPhoto();
+}
+if ($isValid) {
     $data = $_POST;
-    // TODO save photo into assets/uploads/announcement/images and set $data['photo'] = 'namephoto.ext';
     $data['id_annonce'] = (int)$_GET['id'];
-    if (updateAnnouncement($data, $pdo)) {
-        alertSuccess('Announcement successfully updated');
-        header('Location: index.php');
-        exit();
+    try {
+        if ($sentFile) {
+            $data['photo'] = saveUploadedFile(
+                directory: FILES_PATH . 'announcement/',
+                fileInputName: 'photo',
+            );
+        }
+        if (updateAnnouncement($data, $pdo)) {
+            alertSuccess('Announcement successfully updated');
+            header('Location: index.php');
+            exit();
+        }
+        alertError('Something went wrong while updating annonce.');
+    } catch (Exception $e) {
+        alertError($e->getMessage());
     }
-    alertError('Something went wrong while updating annonce.');
 }
 ?>
 <?php require_once('../includes/_header.php') ?>
@@ -45,7 +59,7 @@ if (!empty($_POST) && isValid($_POST)) {
 </div>
 
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('../annonce/inputs.php') ?>
-</form>›
+    <?php require_once('inputs.php') ?>
+</form>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

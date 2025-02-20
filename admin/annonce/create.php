@@ -4,13 +4,22 @@
 
 <?php
 /** @var PDO $pdo */
-if (!empty($_POST) && isValid($_POST)) {
-    if (createAnnouncement($_POST, $pdo)) {
-        alertSuccess('Announcement was created successfully');
-        header('Location: index.php');
-        exit();
+if (!empty($_POST) && isValid($_POST) && isValidPhoto()) {
+    try {
+        $data = $_POST;
+        $data['photo'] = saveUploadedFile(
+            directory: FILES_PATH . 'announcement/',
+            fileInputName: 'photo',
+        );
+        if (createAnnouncement($data, $pdo)) {
+            alertSuccess('Announcement was created successfully');
+            header('Location: index.php');
+            exit();
+        }
+        alertError('Something went wrong while updating annonce.');
+    } catch (Exception $e) {
+        alertError($e->getMessage());
     }
-    alertError('Something went wrong while updating annonce.');
 }
 ?>
 
