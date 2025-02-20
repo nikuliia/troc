@@ -1,4 +1,5 @@
 <?php require_once('../core/init.php') ?>
+<?php require_once('../../common/comments/crud.php') ?>
 
 <?php
 /**
@@ -11,13 +12,7 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
-$stmt = $pdo->query(sprintf("SELECT id_commentaire, membre_id, annonce_id, commentaire, date_enregistrement FROM troc.commentaire WHERE id_commentaire = %d", (int)$_GET['id']));
-
-if ($stmt->rowCount() > 0) {
-    $item = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-    $item = null;
-}
+$item = commentById((int)$_GET['id'], $pdo);
 ?>
 
 <?php require_once('../includes/_header.php') ?>
@@ -29,7 +24,7 @@ if ($stmt->rowCount() > 0) {
     <div class="card">
         <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">ID: <?= $item['id_commentaire'] ?></h5>
+            <h5 class="card-title">Comment ID: <?= $item['id_commentaire'] ?></h5>
             <p class="card-text">User ID: <?= $item['membre_id'] ?></p>
             <p class="card-text">Listing ID: <?= $item['annonce_id'] ?></p>
             <p class="card-text">Comment: <?= $item['commentaire'] ?></p>

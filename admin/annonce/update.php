@@ -41,11 +41,11 @@ if (!empty($_POST) && isValid($_POST)) {
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Update Annonce</h1>
+    <h1 class="h2">Update Announcement</h1>
 </div>
 
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('inputs.php') ?>
-</form>
+    <?php require_once('../annonce/inputs.php') ?>
+</form>›
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

@@ -34,7 +34,7 @@ $items = categoryList($pdo);
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Category ID</th>
             <th scope="col">Title</th>
             <th scope="col">Keywords</th>
             <th scope="col">Actions</th>

@@ -1,5 +1,6 @@
 <?php require_once('../core/init.php') ?>
-
+<?php require_once('../../common/comments/crud.php') ?>
+<?php require_once('../../common/comments/validation.php') ?>
 <?php
 /**
  * @var PDO $pdo
@@ -11,27 +12,26 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
-$stmt = $pdo->query(sprintf("SELECT id_commentaire, membre_id, annonce_id, commentaire, date_enregistrement FROM troc.commentaire WHERE id_commentaire = %d", (int)$_GET['id']));
-
-if ($stmt->rowCount() > 0) {
-    $item = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-    $item = null;
+$item = commentById((int)$_GET['id'], $pdo);
+if (is_null($item)) {
+    alertError('Does not exist.');
+    header('Location: index.php');
+    exit();
 }
-if (!empty($_POST)) {
+if (!empty($_POST) && isValid($_POST)) {
+    $data = $_POST;
     // validate item
 
     // TODO add validation
-
-    // save item
-    $stmt = $pdo->prepare("UPDATE troc.commentaire SET membre_id = :membre_id, annonce_id = :annonce_id, commentaire = :commentaire, date_enregistrement = :date_enregistrement  WHERE id_commentaire = :id_commentaire ");
-    $stmt->bindValue(':membre_id', $_POST['membre_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':annonce_id', $_POST['annonce_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':commentaire', $_POST['commentaire']);
-    $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
-    if (!$stmt->execute()) {
-        alertError('Something went wrong while updating a comment.');
+    $data['id_commentaire'] = (int)$_GET['id'];
+    if (updateComment($data, $pdo)) {
+        alertSuccess('Comment successfully updated');
+        header('Location: index.php');
+        exit();
     }
+    // save item
+    alertError('Something went wrong while updating a comment.');
+
 }
 ?>
 
@@ -42,7 +42,7 @@ if (!empty($_POST)) {
 </div>
 
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('inputs.php') ?>
+    <?php require_once('../comments/inputs.php') ?>
 </form>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

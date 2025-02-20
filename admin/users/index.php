@@ -34,12 +34,12 @@ $items = $pdo->query("SELECT * FROM troc.membre ORDER BY id_membre DESC", PDO::F
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">User ID</th>
             <th scope="col">Nickname</th>
             <th scope="col">Password</th>
             <th scope="col">Name</th>
             <th scope="col">Surname</th>
-            <th scope="col">Phone number</th>
+            <th scope="col">Phone #</th>
             <th scope="col">Email</th>
             <th scope="col">Sex</th>
             <th scope="col">Status</th>

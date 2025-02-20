@@ -26,9 +26,9 @@ function categoryList(PDO $pdo): array
 
 /**
  * @param array{
+ *     id_categorie: int,
  *     titre: string,
  *     motscles: string,
- *     id_categorie: int,
  * } $data
  * @param PDO $pdo
  */

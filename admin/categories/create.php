@@ -26,7 +26,7 @@ if (!empty($_POST) && isValid($_POST)) {
     <h1 class="h2">Create a new categorie</h1>
 </div>
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('inputs.php') ?>
+    <?php require_once('../categories/inputs.php') ?>
 </form>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

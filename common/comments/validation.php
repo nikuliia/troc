@@ -2,20 +2,12 @@
 
 /**
  * @param array{
- *      titre: string,
- *      description_courte: string,
- *      description_longue: string,
- *      prix: int,
- *      photo: string,
- *      pays: string,
- *      ville: string,
- *      adresse: string,
- *      cp: string,
- *      membre_id: int,
- *      categorie_id: int,
- *      date_enregistrement: string
+ *       membre_id: int,
+ *       annonce_id: int,
+ *       commentaire: string,
+ *       date_enregistrement: string,
  *  } $data
-*/
+ */
 function isValid(array $data, array $files): bool
 {
     $valid = true;

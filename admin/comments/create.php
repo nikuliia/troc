@@ -1,4 +1,5 @@
 <?php require_once('../core/init.php') ?>
+<?php require_once('../../common/comments/crud.php') ?>
 
 <?php
 /**
@@ -34,7 +35,7 @@ if (!empty($_POST)) {
     <h1 class="h2">Create a new comment</h1>
 </div>
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('inputs.php') ?>
+    <?php require_once('../comments/inputs.php') ?>
 </form>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

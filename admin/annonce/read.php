@@ -33,19 +33,19 @@ $item = announcementById((int)$_GET['id'], $pdo);
     <div class="card">
         <img src="..." class="card-img-top" alt="<?= $item['titre'] ?>">
         <div class="card-body">
-            <h5 class="card-title">ID: <?= $item['id_annonce'] ?></h5>
-            <p class="card-text">titre: <?= $item['titre'] ?></p>
-            <p class="card-text">description_courte: <?= $item['description_courte'] ?></p>
-            <p class="card-text">description_longue: <?= $item['description_longue'] ?></p>
-            <p class="card-text">prix: <?= $item['prix'] ?></p>
-            <p class="card-text">photo: <?= $item['photo'] ?></p>
-            <p class="card-text">pays: <?= $item['pays'] ?></p>
-            <p class="card-text">ville: <?= $item['ville'] ?></p>
-            <p class="card-text">adresse: <?= $item['adresse'] ?></p>
-            <p class="card-text">cp: <?= $item['cp'] ?></p>
-            <p class="card-text">membre_id: <?= $item['membre_id'] ?></p>
-            <p class="card-text">categorie_id: <?= $item['categorie_id'] ?></p>
-            <p class="card-text">date_enregistrement: <?= $item['date_enregistrement'] ?></p>
+            <h5 class="card-title">Comment ID: <?= $item['id_annonce'] ?></h5>
+            <p class="card-text">Title: <?= $item['titre'] ?></p>
+            <p class="card-text">Short desc: <?= $item['description_courte'] ?></p>
+            <p class="card-text">Longue desc: <?= $item['description_longue'] ?></p>
+            <p class="card-text">Price: <?= $item['prix'] ?></p>
+            <p class="card-text">Photo: <?= $item['photo'] ?></p>
+            <p class="card-text">Country: <?= $item['pays'] ?></p>
+            <p class="card-text">City: <?= $item['ville'] ?></p>
+            <p class="card-text">Address: <?= $item['adresse'] ?></p>
+            <p class="card-text">Zip: <?= $item['cp'] ?></p>
+            <p class="card-text">User ID: <?= $item['membre_id'] ?></p>
+            <p class="card-text">Categorie ID: <?= $item['categorie_id'] ?></p>
+            <p class="card-text">Registration Date: <?= $item['date_enregistrement'] ?></p>
         </div>
         <div class="card-footer">
             <a href="<?= 'update.php?', http_build_query(['id' => $item['id_annonce']]) ?>" class="btn btn-primary w-100">Update</a>

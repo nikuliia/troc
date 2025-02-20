@@ -1,26 +1,19 @@
 <?php require_once('../core/init.php') ?>
+<?php require_once('../../common/comments/crud.php') ?>
 
 <?php
 /**
  * @var PDO $pdo
  * @var array<array{
- *      id_annonce: int,
- *      titre: string,
- *      description_courte: string,
- *      description_longue: string,
- *      prix: int,
- *      photo: string,
- *      pays: string,
- *      ville: string,
- *      adresse: string,
- *      cp: int,
+ *      id_commentaire: int,
  *      membre_id: int,
- *      categorie_id: int,
+ *      annonce_id: int,
+ *      commentaire: string,
  *      date_enregistrement: string,
  * }> $items
  */
 
-$items = $pdo->query("SELECT * FROM troc.commentaire ORDER BY id_commentaire DESC", PDO::FETCH_ASSOC);
+$items = commentList($pdo);
 ?>
 
 <!--Место для кода-->
@@ -28,14 +21,14 @@ $items = $pdo->query("SELECT * FROM troc.commentaire ORDER BY id_commentaire DES
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Comments</h1>
+    <h1 class="h2">Comment</h1>
     <a class="btn btn-success" href="create.php">Add</a>
 </div>
 <div class="table-responsive small">
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Comment ID</th>
             <th scope="col">User ID</th>
             <th scope="col">Listing ID</th>
             <th scope="col">Comment</th>

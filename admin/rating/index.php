@@ -34,7 +34,7 @@ $items = $pdo->query("SELECT * FROM troc.note ORDER BY id_note DESC", PDO::FETCH
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Rating ID</th>
             <th scope="col">User ID_1</th>
             <th scope="col">User ID_2</th>
             <th scope="col">Rating</th>

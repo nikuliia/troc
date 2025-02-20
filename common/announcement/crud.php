@@ -54,6 +54,7 @@ function updateAnnouncement(array $data, PDO $pdo): bool
     $stmt->bindValue(':cp', $data['adresse']);
     $stmt->bindValue(':membre_id', $data['membre_id'], PDO::PARAM_INT);
     $stmt->bindValue(':categorie_id', $data['id_categorie'], PDO::PARAM_INT);
+    $stmt->bindValue(':date_enregistrement', date('Y-m-d'));
     return $stmt->execute();
 }
 
@@ -94,5 +95,5 @@ function createAnnouncement(array $data, PDO $pdo): bool
 
 function deleteAnnouncement(int $id, PDO $pdo): void
 {
-    $pdo->query("DELETE FROM troc.categorie WHERE id_categorie = '$id'");
+    $pdo->query("DELETE FROM troc.annonce WHERE id_annonce = '$id'");
 }

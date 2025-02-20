@@ -34,19 +34,19 @@ $items = announcementList($pdo);
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">titre</th>
-            <th scope="col">description_courte</th>
-            <th scope="col">description_longue</th>
-            <th scope="col">prix</th>
-            <th scope="col">photo</th>
-            <th scope="col">pays</th>
-            <th scope="col">ville</th>
-            <th scope="col">adresse</th>
-            <th scope="col">cp</th>
-            <th scope="col">membre_id</th>
-            <th scope="col">categorie_id</th>
-            <th scope="col">date_enregistrement</th>
+            <th scope="col">Ad ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Short desc</th>
+            <th scope="col">Longue desc</th>
+            <th scope="col">Price</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Country</th>
+            <th scope="col">City</th>
+            <th scope="col">Address</th>
+            <th scope="col">Zip</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Category ID</th>
+            <th scope="col">Registration Date</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
