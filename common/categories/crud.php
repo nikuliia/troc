@@ -53,7 +53,6 @@ function createCategory(array $data, PDO $pdo): bool
     $stmt = $pdo->prepare("INSERT INTO troc.categorie (titre, motscles) VALUES (:titre, :motscles)");
     $stmt->bindValue(':titre', $data['titre']);
     $stmt->bindValue(':motscles', $data['motscles']);
-
     return $stmt->execute();
 }
 

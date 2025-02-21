@@ -4,19 +4,9 @@
 /**
  * @var PDO $pdo
  * @var array<array{
- *      id_annonce: int,
+ *      id_categories: int,
  *      titre: string,
- *      description_courte: string,
- *      description_longue: string,
- *      prix: int,
- *      photo: string,
- *      pays: string,
- *      ville: string,
- *      adresse: string,
- *      cp: int,
- *      membre_id: int,
- *      categorie_id: int,
- *      date_enregistrement: string,
+ *      motscles: string,
  * }> $items
  */
 

@@ -3,7 +3,6 @@
 /**
  * @var PDO $pdo
  * @var array{
- *       id_annonce: int,
  *       titre: string,
  *       description_courte: string,
  *       description_longue: string,
@@ -70,8 +69,7 @@ $categories = getListForSelector($pdo);
     <select class="form-select" name="categorie_id" id="id-categorie_id">
         <?php foreach ($categories as $id => $title) { ?>
             <option value="<?= $id ?>"
-                <?= $id == ($_POST['categorie_id'] ?? $item['categorie_id']) ? ' selected' : ''?>
-            >
+                <?= $id === ($_POST['categorie_id'] ?? $item['categorie_id']) ? ' selected' : ''?>>
                 <?= $title ?>
             </option>
         <?php } ?>

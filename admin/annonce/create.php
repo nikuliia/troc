@@ -26,7 +26,7 @@ if (!empty($_POST) && isValid($_POST) && isValidPhoto()) {
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../includes/_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Create Annonce</h1>
+    <h1 class="h2">Create Announcement</h1>
 </div>
 <form method="post" enctype="multipart/form-data">
     <?php require_once('inputs.php') ?>

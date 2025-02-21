@@ -84,7 +84,7 @@ function updateAnnouncement(array $data, PDO $pdo): bool
  */
 function createAnnouncement(array $data, PDO $pdo): bool
 {
-    $stmt = $pdo->prepare("INSERT INTO troc.annonce (titre, description_courte, description_longue, prix, photo, pays, ville, adresse, cp, membre_id, categorie_id, date_enregistrement) values (:titre, :description_courte, :description_longue, :prix, :photo, :pays, :ville, :adresse, :cp, :membre_id, :categorie_id, :date_enregistrement)");
+    $stmt = $pdo->prepare("INSERT INTO troc.annonce (titre, description_courte, description_longue, prix, photo, pays, ville, adresse, cp, membre_id, categorie_id, date_enregistrement) values (:titre, :description_courte, :description_longue, :prix, :photo, :pays, :ville, :adresse, :cp, :membre_id, :categorie_id, NOW())");
     $stmt->bindValue(':titre', $data['titre']);
     $stmt->bindValue(':description_courte', $data['description_courte']);
     $stmt->bindValue(':description_longue', $data['description_longue']);
@@ -96,7 +96,7 @@ function createAnnouncement(array $data, PDO $pdo): bool
     $stmt->bindValue(':cp', $data['cp']);
     $stmt->bindValue(':membre_id', $data['membre_id'], PDO::PARAM_INT);
     $stmt->bindValue(':categorie_id', $data['categorie_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':date_enregistrement', date('Y-m-d'));
+//    $stmt->bindValue(':date_enregistrement', date('Y-m-d'));
     return $stmt->execute();
 }
 

@@ -16,33 +16,24 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
-$stmt = $pdo->query(sprintf("SELECT id_membre, pseudo, mdp, nom, prenom, telephone, email, civilite, statut, date_enregistrement FROM troc.membre WHERE id_membre = %d", (int)$_GET['id']));
+$item = userById((int)$_GET['id'], $pdo);
 
-if ($stmt->rowCount() > 0) {
-    $item = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-    $item = null;
+if (is_null($item)) {
+    alertError('User not found.');
+    header('location: index.php');
+    exit();
 }
-if (!empty($_POST)) {
-    // validate item
 
-    // TODO add validation
+if (!empty($_POST) && isValid($_POST)) {
 
-    // save item
-    $stmt = $pdo->prepare("UPDATE troc.membre SET pseudo = :pseudo, mdp = :mdp, nom = :nom, prenom = :prenom, telephone = :telephone, email = :email, civilite = :civilite, statut = :statut, date_enregistrement = :date_enregistrement  WHERE id_membre = :id_membre ");
-    $stmt->bindValue(':pseudo', $_POST['pseudo']);
-    $stmt->bindValue(':mdp', $_POST['mdp']);
-    $stmt->bindValue(':nom', $_POST['nom']);
-    $stmt->bindValue(':prenom', $_POST['prenom']);
-    $stmt->bindValue(':telephone', $_POST['telephone']); // TODO save and get name of photo
-    $stmt->bindValue(':email', $_POST['email']);
-    $stmt->bindValue(':civilite', $_POST['civilite']);
-    $stmt->bindValue(':statut', $_POST['statut'], PDO::PARAM_INT);
-    $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
-
-    if (!$stmt->execute()) {
-        alertError('Something went wrong while updating annonce.');
+    $data = $_POST;
+    $data['id_membre'] = (int)$_GET['id'];
+    if (updateCategory($data, $pdo)) {
+        alertSuccess('User successfully updated.');
+        header('Location: index.php');
+        exit();
     }
+    alertError('Something went wrong while updating category.');
 }
 ?>
 

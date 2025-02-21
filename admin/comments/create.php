@@ -13,21 +13,17 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
-if (!empty($_POST)) {
+if (!empty($_POST) && isValid($_POST)) {
     // validate item
 
-    // TODO add validation
-
-    // save item
-    $stmt = $pdo->prepare("INSERT INTO troc.commentaire (membre_id, annonce_id, commentaire, date_enregistrement) VALUES (:membre_id, :annonce_id, :commentaire, :date_enregistrement)");
-    $stmt->bindValue(':membre_id', $_POST['membre_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':annonce_id', $_POST['annonce_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':commentaire', $_POST['commentaire']);
-    $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
-    if (!$stmt->execute()) {
-        alertError('Something went wrong while updating comments.');
+    if (createComment($_POST, $pdo)) {
+        alertSuccess('Comment successfully created.');
+        header('location: index.php');
+        exit();
     }
+    alertError('Something went wrong while updating comments.');
 }
+    // TODO add validation
 ?>
 
 <?php require_once('../includes/_header.php') ?>

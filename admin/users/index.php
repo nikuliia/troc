@@ -4,23 +4,21 @@
 /**
  * @var PDO $pdo
  * @var array<array{
- *      id_annonce: int,
- *      titre: string,
- *      description_courte: string,
- *      description_longue: string,
- *      prix: int,
- *      photo: string,
- *      pays: string,
- *      ville: string,
- *      adresse: string,
- *      cp: int,
- *      membre_id: int,
- *      categorie_id: int,
- *      date_enregistrement: string,
+ *      id_membre: int,
+ *        pseudo: string,
+ *        mdp: string,
+ *        nom: string,
+ *        prenom: string,
+ *        telephone: int,
+ *        email: string,
+ *        civilite: string,
+ *        statut: int,
+ *        date_enregistrement: string,
  * }> $items
  */
 
-$items = $pdo->query("SELECT * FROM troc.membre ORDER BY id_membre DESC", PDO::FETCH_ASSOC);
+$items = userList($pdo);
+//$items = $pdo->query("SELECT * FROM troc.membre ORDER BY id_membre DESC", PDO::FETCH_ASSOC);
 ?>
 <!--Место для кода-->
 
