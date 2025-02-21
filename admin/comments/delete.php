@@ -1,7 +1,5 @@
-<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/core/init.php') ?>
 <?php require_once('../../common/comments/crud.php') ?>
-    <!--Место для кода-->
-
 <?php
 /** @var PDO $pdo */
 try {

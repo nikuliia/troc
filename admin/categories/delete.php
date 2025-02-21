@@ -1,4 +1,4 @@
-<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/core/init.php') ?>
 <?php require_once('../../common/categories/crud.php') ?>
 <?php
 /** @var PDO $pdo */

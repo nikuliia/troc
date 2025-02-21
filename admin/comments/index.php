@@ -1,4 +1,4 @@
-<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/core/init.php') ?>
 <?php require_once('../../common/comments/crud.php') ?>
 
 <?php
@@ -19,7 +19,7 @@ $items = commentList($pdo);
 <!--Место для кода-->
 
 <?php require_once('../includes/_header.php') ?>
-<?php require_once('../includes/_alerts.php') ?>
+<?php require_once('../../_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Comment</h1>
     <a class="btn btn-success" href="create.php">Add</a>
@@ -49,13 +49,13 @@ $items = commentList($pdo);
                 "<td>{$item['commentaire']}</td>",
                 "<td>{$item['date_enregistrement']}</td>" ?>
                 <td>
-                    <a class="text-decoration-none" href="<?= 'commentaire_read.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'read.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
                         <svg class="bi text-secondary"><use xlink:href="#eye-fill"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= 'commentaire_update.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'update.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
                         <svg class="bi text-primary"><use xlink:href="#pencil-square"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= 'commentaire_delete.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'delete.php?', http_build_query(['id' => $item['id_commentaire']]) ?>">
                         <svg class="bi text-danger"><use xlink:href="#trash"/></svg>
                     </a>
                 </td>

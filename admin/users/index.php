@@ -1,4 +1,5 @@
-<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/core/init.php') ?>
+<?php require_once('../../common/user/crud.php') ?>
 
 <?php
 /**
@@ -23,7 +24,7 @@ $items = userList($pdo);
 <!--Место для кода-->
 
 <?php require_once('../includes/_header.php') ?>
-<?php require_once('../includes/_alerts.php') ?>
+<?php require_once('../../_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Users</h1>
     <a class="btn btn-success" href="create.php">Add</a>
@@ -41,7 +42,6 @@ $items = userList($pdo);
             <th scope="col">Email</th>
             <th scope="col">Sex</th>
             <th scope="col">Status</th>
-            <th scope="col">Zip code</th>
             <th scope="col">Registration Date</th>
             <th scope="col">Actions</th>
         </tr>
@@ -62,7 +62,6 @@ $items = userList($pdo);
                 "<td>{$item['email']}</td>",
                 "<td>{$item['civilite']}</td>",
                 "<td>{$item['statut']}</td>",
-                "<td>{$item['cp']}</td>",
                 "<td>{$item['date_enregistrement']}</td>" ?>
                 <td>
                     <a class="text-decoration-none" href="<?= 'read.php?', http_build_query(['id' => $item['id_membre']]) ?>">

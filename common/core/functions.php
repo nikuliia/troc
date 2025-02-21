@@ -51,3 +51,8 @@ function saveUploadedFile(string $directory, string $fileInputName = 'file'): st
 
     return $fileName;
 }
+
+function login(array $user): void
+{
+    $_SESSION['user'] = $user;
+}

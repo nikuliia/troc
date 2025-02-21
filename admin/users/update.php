@@ -1,4 +1,6 @@
-<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/core/init.php') ?>
+<?php require_once('../../common/user/crud.php') ?>
+<?php require_once('../../common/user/validation.php') ?>
 
 <?php
 /**
@@ -24,11 +26,10 @@ if (is_null($item)) {
     exit();
 }
 
-if (!empty($_POST) && isValid($_POST)) {
-
+if (!empty($_POST) && isValid($_POST, false)) {
     $data = $_POST;
     $data['id_membre'] = (int)$_GET['id'];
-    if (updateCategory($data, $pdo)) {
+    if (updateUser($data, $pdo)) {
         alertSuccess('User successfully updated.');
         header('Location: index.php');
         exit();
@@ -38,7 +39,7 @@ if (!empty($_POST) && isValid($_POST)) {
 ?>
 
 <?php require_once('../includes/_header.php') ?>
-<?php require_once('../includes/_alerts.php') ?>
+<?php require_once('../../_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Update User</h1>
 </div>

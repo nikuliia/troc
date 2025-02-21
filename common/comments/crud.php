@@ -34,11 +34,11 @@ function commentList(PDO $pdo): array
  */
 function updateComment(array $data, PDO $pdo): bool
 {
-    $stmt = $pdo->prepare("UPDATE troc.commentaire SET membre_id = :membre_id, annonce_id = :annonce_id, commentaire = :commentaire, date_enregistrement = :date_enregistrement  WHERE id_commentaire = :id_commentaire ");
+    $stmt = $pdo->prepare("UPDATE troc.commentaire SET membre_id = :membre_id, annonce_id = :annonce_id, commentaire = :commentaire WHERE id_commentaire = :id_commentaire ");
     $stmt->bindValue(':membre_id', $data['membre_id'], PDO::PARAM_INT);
     $stmt->bindValue(':annonce_id', $data['annonce_id'], PDO::PARAM_INT);
     $stmt->bindValue(':commentaire', $data['commentaire']);
-    $stmt->bindValue(':date_enregistrement', date('Y-m-d'));
+    $stmt->bindValue(':id_commentaire', $data['id_commentaire'], PDO::PARAM_INT);
     return $stmt->execute();
 }
 
@@ -53,11 +53,10 @@ function updateComment(array $data, PDO $pdo): bool
  */
 function createComment(array $data, PDO $pdo): bool
 {
-    $stmt = $pdo->prepare("INSERT INTO troc.commentaire (membre_id, annonce_id, commentaire, date_enregistrement) values (:membre_id, :annonce_id, :commentaire, :date_enregistrement)");
+    $stmt = $pdo->prepare("INSERT INTO troc.commentaire (membre_id, annonce_id, commentaire) values (:membre_id, :annonce_id, :commentaire)");
     $stmt->bindValue(':membre_id', $data['membre_id'], PDO::PARAM_INT);
     $stmt->bindValue(':annonce_id', $data['annonce_id'], PDO::PARAM_INT);
     $stmt->bindValue(':commentaire', $data['commentaire']);
-    $stmt->bindValue(':date_enregistrement', date('Y-m-d'));
     return $stmt->execute();
 }
 

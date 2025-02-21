@@ -1,19 +1,18 @@
 <?php
 
 /** @var string $validate */
-
-require_once('includes_1/init.php');
+require_once('includes/init.php');
 
 //$title = "Profil de " . $_SESSION['user']['nickname'];
 
-// s'affichera dans la balise <title> de header lorsqu'on sera sur la page profil
-$title = "Profile of " . $_SESSION['user']['nickname'];
-
 // si le user n'est pas connecté je le redirige car il ne peut accéder a cette page
 if(!userConnected()){
-    header('location:' . URL . 'login.php');
+    header('location:login.php');
     exit();
 }
+
+// s'affichera dans la balise <title> de header lorsqu'on sera sur la page profil
+$title = "Profile of " . $_SESSION['user']['nickname'];
 
 // récupération du message de validation qui confirme la connexion réussie
 if(isset($_GET['action']) && $_GET['action'] === 'validate'){
@@ -25,7 +24,7 @@ if(isset($_GET['action']) && $_GET['action'] === 'validate'){
                 </div>';
 }
 
-require_once('includes_1/_header_1.php')
+require_once('includes/_header.php')
 ?>
     <!-- ternaire pour personnaliser le <h2> selon que le user connecté est admin ou non -->
     <h2 class="text-center my-5"><span class="badge badge-dark text-wrap p-3">Hello <?= (userConnectedAdmin()) ? $_SESSION['user']['nickname'] . ", you are admin of the website" : $_SESSION['user']['nickname'] ?></span></h2>
@@ -56,4 +55,4 @@ require_once('includes_1/_header_1.php')
     </div>
 
 <?php
-require_once('includes_1/_footer_1.php');
+require_once('includes/_footer.php');

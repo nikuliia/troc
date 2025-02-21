@@ -1,4 +1,4 @@
-<?php require_once('../core/init.php') ?>
+<?php require_once('../../common/core/init.php') ?>
 <?php require_once('../../common/comments/crud.php') ?>
 <?php require_once('../../common/comments/validation.php') ?>
 <?php
@@ -20,9 +20,6 @@ if (is_null($item)) {
 }
 if (!empty($_POST) && isValid($_POST)) {
     $data = $_POST;
-    // validate item
-
-    // TODO add validation
     $data['id_commentaire'] = (int)$_GET['id'];
     if (updateComment($data, $pdo)) {
         alertSuccess('Comment successfully updated');
@@ -36,13 +33,13 @@ if (!empty($_POST) && isValid($_POST)) {
 ?>
 
 <?php require_once('../includes/_header.php') ?>
-<?php require_once('../includes/_alerts.php') ?>
+<?php require_once('../../_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Comment Update</h1>
 </div>
 
 <form method="post" enctype="multipart/form-data">
-    <?php require_once('../comments/inputs.php') ?>
+    <?php require_once('inputs.php') ?>
 </form>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

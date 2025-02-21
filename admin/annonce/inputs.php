@@ -1,4 +1,5 @@
 <?php require_once('../../common/categories/list.php') ?>
+<?php require_once('../../common/user/list.php') ?>
 <?php
 /**
  * @var PDO $pdo
@@ -17,8 +18,6 @@
  *       date_enregistrement: string,
  *  }|null $item
  ?? '' */
-
-$categories = getListForSelector($pdo);
 ?>
 <div class="form-floating mb-3">
     <input name="titre" type="text" value="<?= $_POST['titre'] ?? $item['titre'] ?? '' ?>" class="form-control" id="id-titre" placeholder="titre">
@@ -29,9 +28,7 @@ $categories = getListForSelector($pdo);
     <label for="id-description_courte">Short desc</label>
 </div>
 <div class="form-floating mb-3">
-    <textarea class="form-control" style="resize: none;" name="description_longue" id="id-description_longue" rows="4">
-        <?= $_POST['description_longue'] ?? $item['description_longue'] ?? '' ?>
-    </textarea>
+    <textarea class="form-control" style="resize: none;" name="description_longue" id="id-description_longue" rows="4"><?= $_POST['description_longue'] ?? $item['description_longue'] ?? '' ?></textarea>
     <label for="id-description_longue">Longue desc</label>
 </div>
 <div class="form-floating mb-3">
@@ -62,14 +59,21 @@ $categories = getListForSelector($pdo);
     <label for="id-cp">Zip</label>
 </div>
 <div class="form-floating mb-3">
-    <input name="membre_id" type="text" value="<?= $_POST['membre_id'] ?? $item['membre_id'] ?? '' ?>" class="form-control" id="id-membre_id" placeholder="membre_id">
-    <label for="id-membre_id">User ID</label>
+    <select class="form-select" name="membre_id" id="id-membre_id">
+        <?php foreach (getUserListForSelector($pdo) as $id => $title) { ?>
+            <option value="<?= $id ?>"
+                <?= $id === ($_POST['membre_id'] ?? $item['membre_id'] ?? '') ? ' selected' : ''?>>
+                <?= $title ?>
+            </option>
+        <?php } ?>
+    </select>
+    <label for="id-membre_id">User</label>
 </div>
 <div class="form-floating mb-3">
     <select class="form-select" name="categorie_id" id="id-categorie_id">
-        <?php foreach ($categories as $id => $title) { ?>
+        <?php foreach (getListForSelector($pdo) as $id => $title) { ?>
             <option value="<?= $id ?>"
-                <?= $id === ($_POST['categorie_id'] ?? $item['categorie_id']) ? ' selected' : ''?>>
+                <?= $id === ($_POST['categorie_id'] ?? $item['categorie_id'] ?? '') ? ' selected' : ''?>>
                 <?= $title ?>
             </option>
         <?php } ?>
