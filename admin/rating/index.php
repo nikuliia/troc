@@ -1,4 +1,6 @@
 <?php require_once('../../common/core/init.php') ?>
+<?php require_once('../../common/rating/crud.php') ?>
+<?php require_once('../admin-rules.php') ?>
 
 <?php
 /**
@@ -20,7 +22,7 @@
  * }> $items
  */
 
-$items = $pdo->query("SELECT * FROM troc.note ORDER BY id_note DESC", PDO::FETCH_ASSOC);
+$items = ratingList($pdo);
 ?>
 <!--Место для кода-->
 
@@ -57,13 +59,11 @@ $items = $pdo->query("SELECT * FROM troc.note ORDER BY id_note DESC", PDO::FETCH
                 "<td>{$item['avis']}</td>",
                 "<td>{$item['date_enregistrement']}</td>" ?>
                 <td>
-                    <a class="text-decoration-none" href="<?= 'read.php?', http_build_query(['id' => $item['id_rating']]) ?>">
+                    <?php $query = http_build_query(['id' => $item['id_note']]) ?>
+                    <a class="text-decoration-none" href="<?= 'read.php?', $query ?>">
                         <svg class="bi text-secondary"><use xlink:href="#eye-fill"/></svg>
                     </a>
-                    <a class="text-decoration-none" href="<?= 'update.php?', http_build_query(['id' => $item['id_rating']]) ?>">
-                        <svg class="bi text-primary"><use xlink:href="#pencil-square"/></svg>
-                    </a>
-                    <a class="text-decoration-none" href="<?= 'delete.php?', http_build_query(['id' => $item['id_rating']]) ?>">
+                    <a class="text-decoration-none" href="<?= 'delete.php?', $query ?>">
                         <svg class="bi text-danger"><use xlink:href="#trash"/></svg>
                     </a>
                 </td>

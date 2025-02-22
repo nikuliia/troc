@@ -1,5 +1,5 @@
 <?php
-
+const AVAILABLE_COUNTRIES = ['France', 'England', 'Spain', 'Germany', 'Belgium'];
 /**
  * @param array{
  *      titre: string,
@@ -36,7 +36,7 @@ function isValid(array $data): bool
         $valid = false;
     }
 
-    if (!isset($data['pays']) || strlen($data['pays']) < 3 || strlen($data['pays']) > 20) {
+    if (!isset($data['pays']) || !in_array($data['pays'], AVAILABLE_COUNTRIES)) {
         alertError('Invalid country name format.');
         $valid = false;
     }

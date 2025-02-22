@@ -12,9 +12,14 @@ function commentById(int $id, PDO $pdo): ?array
     return $item;
 }
 
-function commentList(PDO $pdo): array
+function commentList(PDO $pdo, array $where): array
 {
-    $stmt = $pdo->query("SELECT * FROM troc.commentaire ORDER BY id_commentaire DESC");
+    $query = "SELECT * FROM troc.commentaire";
+    if (!empty($where)) {
+        $query .= " WHERE " . implode(" AND ", $where);
+    }
+    $query .= " ORDER BY id_commentaire DESC";
+    $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {

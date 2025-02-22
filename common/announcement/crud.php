@@ -12,9 +12,14 @@ function announcementById(int $id, PDO $pdo): ?array
     return $item;
 }
 
-function announcementList(PDO $pdo): array
+function announcementList(PDO $pdo, array $where = []): array
 {
-    $stmt = $pdo->query("SELECT * FROM troc.annonce ORDER BY id_annonce DESC");
+    $query = "SELECT * FROM troc.annonce";
+    if (!empty($where)) {
+        $query .= ' WHERE ' . implode(' AND ', $where);
+    }
+    $query .= ' ORDER BY id_annonce DESC';
+    $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
@@ -50,7 +55,7 @@ function updateAnnouncement(array $data, PDO $pdo): bool
     }
 
     $stmt = $pdo->prepare("UPDATE troc.annonce SET titre = :titre, description_courte = :description_courte, description_longue = :description_longue, prix = :prix, pays = :pays, ville = :ville, adresse = :adresse, cp = :cp, membre_id = :membre_id, categorie_id = :categorie_id WHERE id_annonce = :id_annonce ");
-    $stmt->bindValue(':titre', $data['titre'], PDO::PARAM_INT);
+    $stmt->bindValue(':titre', $data['titre']);
     $stmt->bindValue(':description_courte', $data['description_courte']);
     $stmt->bindValue(':description_longue', $data['description_longue']);
     $stmt->bindValue(':prix', $data['prix'], PDO::PARAM_INT);

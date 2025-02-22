@@ -1,18 +1,12 @@
 <?php require_once('../../common/core/init.php') ?>
-
-    <!--Место для кода-->
-
-<?php require_once('../includes/_header.php') ?>
-<?php require_once('../../_alerts.php') ?>
+<?php require_once('../admin-rules.php') ?>
+<?php require_once('../../common/rating/crud.php') ?>
 <?php
 /** @var PDO $pdo */
-
-$success = $pdo->query("DELETE FROM troc.note WHERE id_note = '{$_GET['id']}'");
-if (!$success) {
-    alertError('Something went wrong while trying to delete a rating.');
+try {
+    deleteRating((int)$_GET['id'], $pdo);
+    alertSuccess('Rating successfully deleted.');
+} catch (PDOException $e) {
+    alertError('Something went wrong while trying to delete a rating');
 }
-?>
-    <h2>Delete Rating</h2>
-
-    <!--            Content end -->
-<?php require_once('../includes/_footer.php'); ?>
+header('location: index.php');

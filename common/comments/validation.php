@@ -20,7 +20,7 @@ function isValid(array $data): bool
         $valid = false;
     }
     if (!isset($data['commentaire']) || strlen($data['commentaire']) < 3) {
-        alertError('Invalid title. It should contain at least 3 characters.');
+        alertError('Invalid commentaire. It should contain at least 3 characters.');
         $valid = false;
     }
     return $valid;

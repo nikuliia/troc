@@ -8,7 +8,8 @@ error_reporting(E_ALL);
 <?php require_once('alerts.php') ?>
 <?php require_once('functions.php') ?>
 <?php
-const URL = 'http://localhost/troc/admin/';
+const URL_ADMIN = 'http://localhost/troc/admin/';
+const URL_FRONTEND = 'http://localhost/troc/frontend/';
 const FILES_PATH = __DIR__ . '/../../assets/uploads/images/';
 const FILES_URL = 'http://localhost/troc/assets/uploads/images/';
 

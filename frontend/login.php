@@ -6,8 +6,12 @@
 if (!empty($_POST) && isLoginValid($_POST)) {
     if (($user = userByEmail($_POST['email'], $pdo)) && isEqualPassword($user, $_POST['mdp'])) {
         login($user);
+        if (userConnectedAdmin()) {
+            alertSuccess('Congratulations! You are now logged in as Admin!');
+        }
+    } else {
+        alertError('Invalid password or email');
     }
-    alertError('Invalid password or email');
 }
 if (userConnected()) {
     header('Location:index.php');
@@ -30,6 +34,7 @@ if (userConnected()) {
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 <main class="form-signin w-100 m-auto">
+    <?php require_once('../_alerts.php') ?>
     <form method="post">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <div class="form-floating">

@@ -1,4 +1,5 @@
 <?php require_once('../../common/core/init.php') ?>
+<?php require_once('../admin-rules.php') ?>
 
 <?php
 /**
@@ -28,7 +29,6 @@ if ($stmt->rowCount() > 0) {
 </div>
 <?php if ($item) { ?>
     <div class="card">
-        <img src="..." class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">ID: <?= $item['id_note'] ?></h5>
             <p class="card-text">User ID1: <?= $item['membre_id1'] ?></p>
@@ -36,9 +36,6 @@ if ($stmt->rowCount() > 0) {
             <p class="card-text">Rating: <?= $item['note'] ?></p>
             <p class="card-text">Review: <?= $item['avis'] ?></p>
             <p class="card-text">Registration Date: <?= $item['date_enregistrement'] ?></p>
-        </div>
-        <div class="card-footer">
-            <a href="<?= 'note_update.php?', http_build_query(['id' => $item['id_note']]) ?>" class="btn btn-primary w-100">Update</a>
         </div>
     </div>
 <?php } ?>

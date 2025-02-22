@@ -1,142 +1,88 @@
+<?php require_once('../../common/core/init.php') ?>
+<?php require_once('../../common/user/list.php') ?>
+<?php require_once('../../common/announcement/list.php') ?>
+<?php require_once('../../common/categories/list.php') ?>
+<?php require_once('../admin-rules.php') ?>
+<?php
+/** @var PDO $pdo */
+$topUsersByAvgRating = topUsersByAvgRating($pdo, limit: 5);
+$topUsersByCountAnnonce = topUsersByCountAnnonce($pdo, limit: 5);
+$topOldestAnnouncements = topOldestAnnouncements($pdo, limit: 5);
+$topCategoriesByCountAnnonce = topCategoriesByCountAnnonce($pdo, limit: 5);
+?>
 <?php require_once('../includes/_header.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Dashboard</h1>
 </div>
-<!--            Content start -->
-<!--            Alerts start -->
-<div class="alert alert-primary" role="alert">
-    A simple primary alert—check it out!
-</div>
-
-<!--            Alerts end -->
-<h2>Main page</h2>
-<div class="table-responsive small">
-    <table class="table table-striped table-sm">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Header</th>
-            <th scope="col">Header</th>
-            <th scope="col">Header</th>
-            <th scope="col">Header</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1,001</td>
-            <td>random</td>
-            <td>data</td>
-            <td>placeholder</td>
-            <td>text</td>
-        </tr>
-        <tr>
-            <td>1,002</td>
-            <td>placeholder</td>
-            <td>irrelevant</td>
-            <td>visual</td>
-            <td>layout</td>
-        </tr>
-        <tr>
-            <td>1,003</td>
-            <td>data</td>
-            <td>rich</td>
-            <td>dashboard</td>
-            <td>tabular</td>
-        </tr>
-        <tr>
-            <td>1,003</td>
-            <td>information</td>
-            <td>placeholder</td>
-            <td>illustrative</td>
-            <td>data</td>
-        </tr>
-        <tr>
-            <td>1,004</td>
-            <td>text</td>
-            <td>random</td>
-            <td>layout</td>
-            <td>dashboard</td>
-        </tr>
-        <tr>
-            <td>1,005</td>
-            <td>dashboard</td>
-            <td>irrelevant</td>
-            <td>text</td>
-            <td>placeholder</td>
-        </tr>
-        <tr>
-            <td>1,006</td>
-            <td>dashboard</td>
-            <td>illustrative</td>
-            <td>rich</td>
-            <td>data</td>
-        </tr>
-        <tr>
-            <td>1,007</td>
-            <td>placeholder</td>
-            <td>tabular</td>
-            <td>information</td>
-            <td>irrelevant</td>
-        </tr>
-        <tr>
-            <td>1,008</td>
-            <td>random</td>
-            <td>data</td>
-            <td>placeholder</td>
-            <td>text</td>
-        </tr>
-        <tr>
-            <td>1,009</td>
-            <td>placeholder</td>
-            <td>irrelevant</td>
-            <td>visual</td>
-            <td>layout</td>
-        </tr>
-        <tr>
-            <td>1,010</td>
-            <td>data</td>
-            <td>rich</td>
-            <td>dashboard</td>
-            <td>tabular</td>
-        </tr>
-        <tr>
-            <td>1,011</td>
-            <td>information</td>
-            <td>placeholder</td>
-            <td>illustrative</td>
-            <td>data</td>
-        </tr>
-        <tr>
-            <td>1,012</td>
-            <td>text</td>
-            <td>placeholder</td>
-            <td>layout</td>
-            <td>dashboard</td>
-        </tr>
-        <tr>
-            <td>1,013</td>
-            <td>dashboard</td>
-            <td>irrelevant</td>
-            <td>text</td>
-            <td>visual</td>
-        </tr>
-        <tr>
-            <td>1,014</td>
-            <td>dashboard</td>
-            <td>illustrative</td>
-            <td>rich</td>
-            <td>data</td>
-        </tr>
-        <tr>
-            <td>1,015</td>
-            <td>random</td>
-            <td>tabular</td>
-            <td>information</td>
-            <td>text</td>
-        </tr>
-        </tbody>
-    </table>
-
+<div class="row row-cols-2 g-3">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Top users by average rating</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <?php foreach ($topUsersByAvgRating as $item) { ?>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <?= $item['nom'] ?>
+                            <span class="badge text-bg-primary"><?= round((float)$item['avgNote'], 1) ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Top users by count annonce</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <?php foreach ($topUsersByCountAnnonce as $item) { ?>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <?= $item['nom'] ?>
+                            <span class="badge text-bg-primary"><?= $item['countAnnonce'] ?? 0 ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Top oldest announcements</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <?php foreach ($topOldestAnnouncements as $item) { ?>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <?= $item['titre'] ?>
+                            <span class="badge text-bg-primary"><?= $item['date_enregistrement'] ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Top oldest announcements</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <?php foreach ($topCategoriesByCountAnnonce as $item) { ?>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <?= $item['titre'] ?>
+                            <span class="badge text-bg-primary"><?= $item['countAnnonce'] ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

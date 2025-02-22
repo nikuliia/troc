@@ -1,32 +1,13 @@
 <?php require_once('../../common/core/init.php') ?>
-
+<?php require_once('../../common/rating/crud.php') ?>
+<?php require_once('../../common/rating/validation.php') ?>
+<?php require_once('../admin-rules.php') ?>
 <?php
-/**
- * @var PDO $pdo
- * @var array{
- *       id_note: int,
- *       membre_id1: int,
- *       membre_id2: int,
- *       note: int,
- *       avis: string,
- *       date_enregistrement: string,
- *  }|null $item
- */
-if (!empty($_POST)) {
-    // validate item
-
-    // TODO add validation
-
-    // save item
-    $stmt = $pdo->prepare("INSERT INTO troc.note (membre_id1, membre_id2, note, avis, date_enregistrement) VALUES (:membre_id1, :membre_id2, :note, :avis, :date_enregistrement)");
-    $stmt->bindValue(':membre_id1', $_POST['membre_id1'], PDO::PARAM_INT);
-    $stmt->bindValue(':membre_id2', $_POST['membre_id2'], PDO::PARAM_INT);
-    $stmt->bindValue(':note', $_POST['note'], PDO::PARAM_INT);
-    $stmt->bindValue(':avis', $_POST['avis']);
-    $stmt->bindValue(':date_enregistrement', $_POST['date_enregistrement']);
-    if (!$stmt->execute()) {
-        alertError('Something went wrong while updating a rating.');
-    }
+/** @var PDO $pdo */
+if (!empty($_POST) && isValid($_POST) && createRating($_POST, $pdo)) {
+    alertSuccess('Rating created successfully.');
+    header('Location: index.php');
+    exit();
 }
 ?>
 

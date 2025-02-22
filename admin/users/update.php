@@ -1,4 +1,5 @@
 <?php require_once('../../common/core/init.php') ?>
+<?php require_once('../admin-rules.php') ?>
 <?php require_once('../../common/user/crud.php') ?>
 <?php require_once('../../common/user/validation.php') ?>
 

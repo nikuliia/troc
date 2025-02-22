@@ -7,9 +7,23 @@ function userConnected(): bool
     return isset($_SESSION['user']);
 }
 
+function userId(): ?int
+{
+    return $_SESSION['user']['id_membre'] ?? null;
+}
+
+function userEmail(): string
+{
+    return $_SESSION['user']['email'];
+}
+
 function userConnectedAdmin(): bool
 {
-    return userConnected() && $_SESSION['user']['status'] == 1;
+    if (!isset($_SESSION['user']['statut'])) {
+        return false;
+    }
+
+    return userConnected() && $_SESSION['user']['statut'] == 1;
 }
 
 function dd(mixed $value): void
@@ -55,4 +69,9 @@ function saveUploadedFile(string $directory, string $fileInputName = 'file'): st
 function login(array $user): void
 {
     $_SESSION['user'] = $user;
+}
+
+function logout(): void
+{
+    unset($_SESSION['user']);
 }

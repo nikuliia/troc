@@ -1,5 +1,4 @@
-<?php require_once('../../common/categories/list.php') ?>
-<?php require_once('../../common/user/list.php') ?>
+<?php require_once('../common/categories/list.php') ?>
 <?php
 /**
  * @var PDO $pdo
@@ -64,17 +63,6 @@
 <div class="form-floating mb-3">
     <input name="cp" type="text" value="<?= $_POST['cp'] ?? $item['cp'] ?? '' ?>" class="form-control" id="id-cp" placeholder="cp">
     <label for="id-cp">Zip</label>
-</div>
-<div class="form-floating mb-3">
-    <select class="form-select" name="membre_id" id="id-membre_id">
-        <?php foreach (getUserListForSelector($pdo) as $id => $title) { ?>
-            <option value="<?= $id ?>"
-                <?= $id === ($_POST['membre_id'] ?? $item['membre_id'] ?? '') ? ' selected' : ''?>>
-                <?= $title ?>
-            </option>
-        <?php } ?>
-    </select>
-    <label for="id-membre_id">User</label>
 </div>
 <div class="form-floating mb-3">
     <select class="form-select" name="categorie_id" id="id-categorie_id">

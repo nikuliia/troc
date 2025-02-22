@@ -1,58 +1,63 @@
 <?php
+require_once('../common/core/init.php');
+require_once('../common/user/crud.php');
+require_once('../common/user/validation.php');
+require_once('../common/rating/crud.php');
 
-/** @var string $validate */
-require_once('includes/init.php');
+/** @var PDO $pdo */
 
-//$title = "Profil de " . $_SESSION['user']['nickname'];
-
-// si le user n'est pas connecté je le redirige car il ne peut accéder a cette page
 if(!userConnected()){
     header('location:login.php');
     exit();
 }
 
-// s'affichera dans la balise <title> de header lorsqu'on sera sur la page profil
-$title = "Profile of " . $_SESSION['user']['nickname'];
+$item = userById(userId(), $pdo);
 
-// récupération du message de validation qui confirme la connexion réussie
-if(isset($_GET['action']) && $_GET['action'] === 'validate'){
-    $validate .= '<div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
-                    Congratulations <strong>' . $_SESSION['user']['pseudo'] .'</strong>, you are connected 😉 !
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>';
+if (!empty($_POST)) {
+    $data = $_POST;
+    $data['id_membre'] = $item['id_membre'];
+    $data['email'] = $item['email'];
+    $data['statut'] = $item['statut'];
+    if (isValid($data, false) && updateUser($data, $pdo)) {
+        $item = userById(userId(), $pdo);
+        alertSuccess('Profile updated successfully');
+    }
 }
-
-require_once('includes/_header.php')
+$ratings = ratingList($pdo, ["membre_id2 = {$item['id_membre']}"]);
+require_once('includes/_header.php');
 ?>
-    <!-- ternaire pour personnaliser le <h2> selon que le user connecté est admin ou non -->
-    <h2 class="text-center my-5"><span class="badge badge-dark text-wrap p-3">Hello <?= (userConnectedAdmin()) ? $_SESSION['user']['nickname'] . ", you are admin of the website" : $_SESSION['user']['nickname'] ?></span></h2>
-
-    <!-- pour afficher le message de validation -->
-<?= $validate ?>
-
-    <!-- $validate .= '<div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
-                        Félicitations <strong>' . $_SESSION['user']['nickname'] .'</strong>, vous etes connecté 😉 !
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>'; -->
-
-
-
-    <div class="row justify-content-around py-5">
-        <div class="col-md-3 text-center">
-
-            <ul class="list-group">
-                <!-- je récupère dans chaque <li> l'information qui m'interesse dans le fichier session[user] -->
-                <li class="btn btn-outline-success text-dark my-3 shadow bg-white rounded"><?= $_SESSION['user']['nom'] ?></li>
-                <li class="btn btn-outline-success text-dark my-3 shadow bg-white rounded"><?= $_SESSION['user']['prenom'] ?></li>
-                <li class="btn btn-outline-success text-dark my-3 shadow bg-white rounded"><?= $_SESSION['user']['email'] ?></li>
-                <li class="btn btn-outline-success text-dark my-3 shadow bg-white rounded"><?= $_SESSION['user']['adresse'] ?></li>
-            </ul>
+<main>
+    <div class="container">
+        <?php require_once('../_alerts.php') ?>
+        <div class="row row-cols-1">
+            <div class="col d-flex justify-content-between">
+                <h1>Profile</h1>
+                <div class="text-end">
+                    <a class="btn btn-outline-primary" href="<?= 'own-announces.php' ?>">My announcements</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <form method="post">
+                    <?php require_once('includes/profile-inputs.php') ?>
+                </form>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="col">
+                    <h1>My rating</h1>
+                </div>
+                <div class="col">
+                    <?php foreach ($ratings as $rating) { ?>
+                        <p>
+                            <?= $rating['date_enregistrement'] ?>
+                            <?= implode('', array_map(
+                                static fn() => '⭑',
+                                range(1, $rating['note']))) ?><br>
+                            <?= $rating['avis'] ?>
+                        </p>
+                    <?php } ?>
+                </div>
+            </div>
         </div>
     </div>
-
-<?php
-require_once('includes/_footer.php');
+</main>
+<?php require_once('includes/_footer.php');

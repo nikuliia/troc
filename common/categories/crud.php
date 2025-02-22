@@ -12,9 +12,31 @@ function categoryById(int $id, PDO $pdo): ?array
     return $item;
 }
 
-function categoryList(PDO $pdo): array
+function categoryList(PDO $pdo, array $orderBy = ['id_categorie', 'DESC']): array
 {
-    $stmt = $pdo->query("SELECT id_categorie, titre, motscles FROM troc.categorie ORDER BY id_categorie DESC");
+    $query = "SELECT id_categorie, titre, motscles FROM troc.categorie";
+    if (!empty($orderBy)) {
+        $query .= " ORDER BY $orderBy[0] $orderBy[1]";
+    }
+    $stmt = $pdo->query($query);
+    if ($stmt->rowCount() > 0) {
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        $items = [];
+    }
+
+    return $items;
+}
+
+function categoriesWithExistingAnnouncements(PDO $pdo): array
+{
+    $query = "SELECT c.id_categorie, c.titre, c.motscles
+FROM troc.categorie c
+join troc.annonce a on a.categorie_id = c.id_categorie
+group by c.id_categorie
+order by c.id_categorie";
+
+    $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
