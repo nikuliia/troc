@@ -3,17 +3,21 @@
 <?php require_once('../common/user/validation.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// User login authentication
+// Checking if the form is submitted and validating login input
+
 if (!empty($_POST) && isLoginValid($_POST)) {
     if (($user = userByEmail($_POST['email'], $pdo)) && isEqualPassword($user, $_POST['mdp'])) {
         login($user);
-        if (userConnectedAdmin()) {
+        if (userConnectedAdmin()) { //Checking if the user is an admin
             alertSuccess('Congratulations! You are now logged in as Admin!');
         }
     } else {
         alertError('Invalid password or email');
     }
 }
-if (userConnected()) {
+if (userConnected()) { // Redirecting logged-in user
     header('Location:index.php');
     exit();
 }

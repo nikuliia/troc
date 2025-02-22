@@ -22,7 +22,7 @@ $anouncments = announcementList($pdo, $where);
                                 <p class="card-text"><?= $anouncment['titre'] ?></p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="<?= 'view-anounce.php?', http_build_query(['id_annonce' => $anouncment['id_annonce']]) ?>" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a href="<?= 'view-announcement.php?', http_build_query(['id_annonce' => $anouncment['id_annonce']]) ?>" class="btn btn-sm btn-outline-secondary">View</a>
                                     </div>
                                     <small class="text-body-secondary"><?= date('Y-m-d', strtotime($anouncment['date_enregistrement'])) ?></small>
                                 </div>

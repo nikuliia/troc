@@ -27,8 +27,8 @@ $comments = commentList($pdo, ['annonce_id' => $item['id_annonce']]);
                     <p class="card-text"><?= $item['titre'] ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="<?= 'own-anounce-edit.php?', http_build_query(['id_annonce' => $item['id_annonce']]) ?>" class="btn btn-sm btn-outline-primary">Edit</a>
-                            <a href="<?= 'own-anounce-delete.php?', http_build_query(['id_annonce' => $item['id_annonce']]) ?>" class="btn btn-sm btn-outline-danger">Delete</a>
+                            <a href="<?= 'own-announce-edit.php?', http_build_query(['id_annonce' => $item['id_annonce']]) ?>" class="btn btn-sm btn-outline-primary">Edit</a>
+                            <a href="<?= 'own-announce-delete.php?', http_build_query(['id_annonce' => $item['id_annonce']]) ?>" class="btn btn-sm btn-outline-danger">Delete</a>
                         </div>
                         <small class="text-body-secondary"><?= date('Y-m-d', strtotime($item['date_enregistrement'])) ?></small>
                     </div>

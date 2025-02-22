@@ -18,8 +18,8 @@ if (!empty($_POST)) {
         );
 
         if (isValid($data) && createAnnouncement($data, $pdo)) {
-            alertSuccess('Announce created succesfully');
-            header("Location:" . URL_FRONTEND . "own-announces.php");
+            alertSuccess('Announcement created successfully');
+            header("Location:" . URL_FRONTEND . "own-announcement.php");
             exit();
         }
     }

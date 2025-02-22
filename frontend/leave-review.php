@@ -4,31 +4,33 @@
 <?php require_once('../common/rating/validation.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// Handling the submission of user reviews for an announcement (only logged in users can leave a review)
 if (!userConnected()) {
     header("Location:login.php");
     exit();
 }
 
-$anounceId = (int)$_GET['id_annonce'];
+$announcementId = (int)$_GET['id_annonce']; // Getting the Announcement ID from the URL
 
-if (!$anounceId) {
+if (!$announcementId) { // checking it is the ID valid
     header("Location:index.php");
     exit();
 }
 
-$exists = existsByUser(userId(), $anounceId, $pdo);
+$exists = existsByUser(userId(), $announcementId, $pdo); //Check if the user has already reviewed this announcement
 
-if ($exists) {
-    alertError('Your review already exists.');
-    header("Location:" . URL_FRONTEND . "view-anounce.php?id_annonce=$anounceId");
+if ($exists) { // Prevents duplicate reviews
+    alertError('You already reviewed this announcement.');
+    header("Location:" . URL_FRONTEND . "view-announcement.php?id_annonce=$announcementId");
     exit();
 }
 
-$announcement = announcementById($anounceId, $pdo);
+$announcement = announcementById($announcementId, $pdo);
 
 if ($announcement['membre_id'] === userId()) {
     alertError('Can\'t leave review on your announcement.');
-    header("Location:" . URL_FRONTEND . "view-anounce.php?id_annonce=$anounceId");
+    header("Location:" . URL_FRONTEND . "view-announcement.php?id_annonce=$announcementId");
     exit();
 }
 if (!empty($_POST)) {
@@ -37,7 +39,7 @@ if (!empty($_POST)) {
     $data['membre_id2'] = $announcement['membre_id'];
     if (isValid($data) && createRating($data, $pdo)) {
         alertSuccess('Rating succesfully saved');
-        header("Location:" . URL_FRONTEND . "view-anounce.php?id_annonce=$anounceId");
+        header("Location:" . URL_FRONTEND . "view-announcement.php?id_annonce=$announcementId");
         exit();
     }
 }

@@ -12,7 +12,7 @@ if (empty($_GET['id_annonce'])) {
 }
 $announcement = announcementById((int)$_GET['id_annonce'], $pdo);
 if (empty($announcement)) {
-    alertError('Annonce non trouver');
+    alertError('Announcement is not found');
     header('Location: index.php');
     exit();
 }
@@ -21,7 +21,7 @@ if (!empty($_POST)) {
     $data['membre_id'] = userId();
     $data['annonce_id'] = $announcement['id_annonce'];
     if (isValid($data) && createComment($data, $pdo)) {
-        alertSuccess('Comment succesfully created');
+        alertSuccess('Comment successfully created');
     }
 }
 $comments = commentList($pdo, ['annonce_id' => $announcement['id_annonce']]);

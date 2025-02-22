@@ -41,7 +41,7 @@ $categories = categoriesWithExistingAnnouncements($pdo);
                         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" style="">
-                        <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'own-anounce-add.php' ?>">Add annonce...</a></li>
+                        <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'own-announce-add.php' ?>">Add annonce...</a></li>
                         <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'own-announces.php' ?>">My annonces</a></li>
                         <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'profile.php' ?>">Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
