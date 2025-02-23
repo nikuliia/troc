@@ -18,6 +18,9 @@
  *  }|null $item
  ?? '' */
 ?>
+
+<!-- Form Fields with Pre-Filled Data -->
+<!-- Each input field follows this pattern:-->
 <div class="form-floating mb-3">
     <input name="titre" type="text" value="<?= $_POST['titre'] ?? $item['titre'] ?? '' ?>" class="form-control" id="id-titre" placeholder="titre">
     <label for="id-titre">Title</label>
@@ -34,6 +37,8 @@
     <input name="prix" type="text" value="<?= $_POST['prix'] ?? $item['prix'] ?? '' ?>" class="form-control" id="id-prix" placeholder="prix">
     <label for="id-prix">Price</label>
 </div>
+
+<!-- File Upload Handling (Photo). Accepts specific image formats for uploading -->
 <div class="mb-3">
     <label for="id-photo" class="form-label">Photo</label>
     <input accept=".jpg, .png, .svg, .bmp, .webp" class="form-control" name="photo" type="file" id="id-photo">
@@ -41,6 +46,8 @@
         <img class="img-thumbnail w-50" src="<?= FILES_URL, '/announcement/', $item['photo'] ?>" alt="">
     <?php } ?>
 </div>
+
+<!--Dropdown for Country Selection-->
 <div class="form-floating mb-3">
     <select class="form-select" name="pays" id="id-pays">
         <?php foreach (AVAILABLE_COUNTRIES as $country) { ?>
@@ -52,6 +59,7 @@
     </select>
     <label for="id-pays">Country</label>
 </div>
+
 <div class="form-floating mb-3">
     <input name="ville" type="text" value="<?= $_POST['ville'] ?? $item['ville'] ?? '' ?>" class="form-control" id="id-ville" placeholder="ville">
     <label for="id-ville">City</label>
@@ -64,6 +72,8 @@
     <input name="cp" type="text" value="<?= $_POST['cp'] ?? $item['cp'] ?? '' ?>" class="form-control" id="id-cp" placeholder="cp">
     <label for="id-cp">Zip</label>
 </div>
+
+<!-- Dynamic Dropdown for Categories -->
 <div class="form-floating mb-3">
     <select class="form-select" name="categorie_id" id="id-categorie_id">
         <?php foreach (getListForSelector($pdo) as $id => $title) { ?>

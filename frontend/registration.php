@@ -1,16 +1,16 @@
-<?php require_once('common/core/init.php') ?>
-<?php require_once('common/user/crud.php') ?>
-<?php require_once('common/user/validation.php') ?>
+<?php require_once('../common/core/init.php') ?>
+<?php require_once('../common/user/crud.php') ?>
+<?php require_once('../common/user/validation.php') ?>
 <?php
-die('ss');
+
 /** @var PDO $pdo */
 if (!empty($_POST) && isValid($_POST)) {
     $user = $_POST;
     if (createUser($_POST, $pdo)) {
-        $user['statut'] = 0;
+        $user = userByEmail($_POST['email'], $pdo);
         alertSuccess('User successfully created.');
         $_SESSION['user'] = $user;
-        header('location: frontend/profile.php');
+        header('location: profile.php');
         exit();
     }
     alertError('Something went wrong while updating user information.');
@@ -32,7 +32,7 @@ if (!empty($_POST) && isValid($_POST)) {
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 <main class="form-signin w-100 m-auto">
-    <?php require_once('_alerts.php') ?>
+    <?php require_once('../_alerts.php') ?>
     <form method="post">
         <h1 class="h3 mb-3 fw-normal">Please Register</h1>
         <div class="form-floating">

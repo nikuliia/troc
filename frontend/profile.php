@@ -12,7 +12,6 @@ if(!userConnected()){
 }
 
 $item = userById(userId(), $pdo);
-
 if (!empty($_POST)) {
     $data = $_POST;
     $data['id_membre'] = $item['id_membre'];

@@ -1,5 +1,5 @@
 <?php
-
+// We define functions to interact with a "troc.commentaire" database table
 function commentById(int $id, PDO $pdo): ?array
 {
     $stmt = $pdo->query(sprintf("SELECT id_commentaire, membre_id, annonce_id, commentaire, date_enregistrement FROM troc.commentaire WHERE id_commentaire = %d", $id));

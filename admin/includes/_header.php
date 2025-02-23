@@ -30,7 +30,7 @@
 </head>
 <body>
 
-
+<!-- header -->
 <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="../../frontend/index.php">TROC</a>
     <ul class="navbar-nav flex-row d-md-none">
@@ -41,6 +41,7 @@
         </li>
     </ul>
 </header>
+<!-- end of header -->
 
 <div class="container-fluid ">
     <div class="row mb-3">

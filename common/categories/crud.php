@@ -1,5 +1,5 @@
 <?php
-
+// We define functions to interact with a "troc.categorie" database table
 function categoryById(int $id, PDO $pdo): ?array
 {
     $stmt = $pdo->query(sprintf("SELECT id_categorie, titre, motscles FROM troc.categorie WHERE id_categorie = %d", $id));
@@ -12,6 +12,7 @@ function categoryById(int $id, PDO $pdo): ?array
     return $item;
 }
 
+// categoryList function fetches a list of categories with optional sorting and pagination
 /** @param array{limit: int, offset: int} $pagination */
 function categoryList(PDO $pdo, array $orderBy = ['id_categorie', 'DESC'], array $pagination = []): array
 {
@@ -32,6 +33,7 @@ function categoryList(PDO $pdo, array $orderBy = ['id_categorie', 'DESC'], array
     return $items;
 }
 
+// categoriesCount function counts the total number of categories with optional filtering based on conditions provided in the $where array
 function categoriesCount(PDO $pdo, array $where = []): int
 {
     $query = "SELECT count(*) FROM troc.categorie";
@@ -42,6 +44,7 @@ function categoriesCount(PDO $pdo, array $where = []): int
     return $pdo->query($query)->fetchColumn();
 }
 
+//function fetches categories that have at least one associated announcement from the troc.annonce table
 function categoriesWithExistingAnnouncements(PDO $pdo): array
 {
     $query = "SELECT c.id_categorie, c.titre, c.motscles
@@ -68,6 +71,8 @@ order by c.id_categorie";
  * } $data
  * @param PDO $pdo
  */
+
+//updateCategory updates an existing category
 function updateCategory(array $data, PDO $pdo): bool
 {
     $stmt = $pdo->prepare("UPDATE troc.categorie SET titre = :titre, motscles = :motscles WHERE id_categorie = :id_categorie");
@@ -84,6 +89,8 @@ function updateCategory(array $data, PDO $pdo): bool
  * } $data
  * @param PDO $pdo
  */
+
+// createCategory inserts a new category into the database
 function createCategory(array $data, PDO $pdo): bool
 {
     $stmt = $pdo->prepare("INSERT INTO troc.categorie (titre, motscles) VALUES (:titre, :motscles)");
@@ -92,6 +99,7 @@ function createCategory(array $data, PDO $pdo): bool
     return $stmt->execute();
 }
 
+// // deleteCategory deletes a category from troc.categorie
 function deleteCategory(int $id, PDO $pdo): void
 {
     $pdo->query("DELETE FROM troc.categorie WHERE id_categorie = '$id'");

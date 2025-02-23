@@ -53,10 +53,10 @@ function saveUploadedFile(string $directory, string $fileInputName = 'file'): st
         throw new \Exception("Ошибка при загрузке файла");
     }
 
-    // Получаем временный путь файла
+    // Getting the temporary path of the file
     $tmpName = $_FILES[$fileInputName]['tmp_name'];
 
-    // Формируем конечный путь для сохранения файла
+    // Form the final path to save the file
     $fileName = basename($_FILES[$fileInputName]['name']);
     $filePath = rtrim($directory, '/') . '/' . $fileName;
 
@@ -72,6 +72,7 @@ function login(array $user): void
     $_SESSION['user'] = $user;
 }
 
+// removing the user session to log them out
 function logout(): void
 {
     unset($_SESSION['user']);
@@ -92,21 +93,21 @@ function pagination(int $total): array
 {
     $page = currentPage();
 
-    // Осуществляем проверку корректности параметра страницы
+    // Checking if the page parameters are correct
     if ($page < 1) {
-        $page = 1; // Если страница меньше 1, устанавливаем минимальное значение 1
+        $page = 1; // If the page is less than 1, set the minimum value to 1
     }
 
-    // Вычисляем офсет
+    // Calculating the offset
     $offset = ($page - 1) * PER_PAGE;
 
-    // Ограничиваем офсет, чтобы не выходить за пределы общего количества
+    // Limit the offset to stay within the total amount
     if ($offset >= $total) {
         $offset = 0;
     }
 
     return [
-        'limit' => PER_PAGE, // Лимит - количество элементов на странице
+        'limit' => PER_PAGE, // Limit the number of elements on the page
         'offset' => $offset,
     ];
 }

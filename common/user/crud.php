@@ -1,5 +1,5 @@
 <?php
-
+// We define functions to interact with a "troc.user" database table
 function userById(int $id, PDO $pdo): ?array
 {
     $stmt = $pdo->query(sprintf("SELECT id_membre, pseudo, mdp, nom, prenom, telephone, email, civilite, statut, date_enregistrement FROM troc.membre WHERE id_membre = %d", $id));

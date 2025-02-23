@@ -1,12 +1,12 @@
 <?php
-
-function existsByUser($currentUserId, $anouncementId, PDO $pdo): bool
+// We define functions to interact with a "troc.note" database table
+function existsByUser($currentUserId, $announcementId, PDO $pdo): bool
 {
     $query = "select * from note n
   join membre user on user.id_membre = n.membre_id1
   join membre user2 on user2.id_membre = n.membre_id2
   join annonce a on a.membre_id = user2.id_membre
-where user.id_membre = $currentUserId and a.id_annonce = $anouncementId";
+where user.id_membre = $currentUserId and a.id_annonce = $announcementId";
     $stmt = $pdo->query($query);
     return $stmt->rowCount() > 0;
 }

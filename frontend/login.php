@@ -12,6 +12,8 @@ if (!empty($_POST) && isLoginValid($_POST)) {
         login($user);
         if (userConnectedAdmin()) { //Checking if the user is an admin
             alertSuccess('Congratulations! You are now logged in as Admin!');
+        } else {
+            alertSuccess('Congratulations! You are now logged in!');
         }
     } else {
         alertError('Invalid password or email');
@@ -37,17 +39,22 @@ if (userConnected()) { // Redirecting logged-in user
     <link href="../assets/sign-in.css" rel="stylesheet">
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+<!-- User login form that allows users to enter their email and password -->
 <main class="form-signin w-100 m-auto">
     <?php require_once('../_alerts.php') ?>
     <form method="post">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <div class="form-floating">
-            <input name="email" type="email" value="<?= $_POST['email'] ?? '' ?>" class="form-control" id="floatingInput-email" placeholder="email">
+<!-- Keeps the entered email if the form is submitted incorrectly -->
+            <input name="email" type="email" value="<?= $_POST['email'] ?? '' ?>" class="form-control"
+                   id="floatingInput-email" placeholder="email">
             <label for="floatingInput-email">email</label>
         </div>
         <div class="form-floating">
-            <input name="mdp" type="password" value="<?= $_POST['mdp'] ?? '' ?>" class="form-control" id="floatingInput-mdp" placeholder="mdp">
-            <label for="floatingInput-mdp">mdp</label>
+            <input name="mdp" type="password" value="<?= $_POST['mdp'] ?? '' ?>" class="form-control"
+                   id="floatingInput-mdp" placeholder="mdp">
+            <label for="floatingInput-mdp">password</label>
         </div>
         <button class="btn btn-primary w-100" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-body-secondary">Or <a href="registration.php">registration</a></p>

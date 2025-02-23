@@ -10,6 +10,8 @@
  *  }|null $item
 * ?? '' */
 ?>
+
+<!-- The part of a user review form that allows users to submit a rating (note) and review (avis) -->
 <div class="form-floating mb-3">
     <input type="number" min="1" max="5" name="note" value="<?= $_POST['note'] ?? $item['note'] ?? '5' ?>" class="form-control" id="id-rating" placeholder="Rating">
     <label for="id-rating">Rating (note)</label>

@@ -1,5 +1,7 @@
 <?php
+// We define functions to interact with a "troc.annonce" database table
 
+// announcementById function fetches a specific announcement by its ID
 function announcementById(int $id, PDO $pdo): ?array
 {
     $stmt = $pdo->query(sprintf("SELECT id_annonce, titre, description_courte, description_longue, prix, photo, pays, ville, adresse, cp, membre_id, categorie_id, date_enregistrement FROM troc.annonce WHERE id_annonce = %d", $id));
@@ -12,6 +14,7 @@ function announcementById(int $id, PDO $pdo): ?array
     return $item;
 }
 
+// announcementList function fetches a list of announcements with optional filters and pagination
 /** @param array{limit: int, offset: int} $pagination */
 function announcementList(PDO $pdo, array $where = [], array $pagination = []): array
 {
@@ -31,10 +34,11 @@ function announcementList(PDO $pdo, array $where = [], array $pagination = []): 
     return $items;
 }
 
+// announcementCount function counts the total number of announcements with optional filtering based on conditions provided in the $where array
 function announcementCount(PDO $pdo, array $where = []): int
 {
     $query = "SELECT count(*) FROM troc.annonce";
-    if (!empty($where)) {
+    if (!empty($where)) { // an optional filter in the form of an associative array. This allows filtering the count of announcements based on conditions
         $query .= ' WHERE ' . implode(' AND ', $where);
     }
 
@@ -57,6 +61,8 @@ function announcementCount(PDO $pdo, array $where = []): int
  *  } $data
  * @param PDO $pdo
  */
+
+// updateAnnouncement updates an existing announcement
 function updateAnnouncement(array $data, PDO $pdo): bool
 {
     if ($data['photo']) {
@@ -99,6 +105,8 @@ function updateAnnouncement(array $data, PDO $pdo): bool
  * } $data
  * @param PDO $pdo
  */
+
+// createAnnouncement inserts a new announcement into the database
 function createAnnouncement(array $data, PDO $pdo): bool
 {
     $stmt = $pdo->prepare("INSERT INTO troc.annonce (titre, description_courte, description_longue, prix, photo, pays, ville, adresse, cp, membre_id, categorie_id, date_enregistrement) values (:titre, :description_courte, :description_longue, :prix, :photo, :pays, :ville, :adresse, :cp, :membre_id, :categorie_id, NOW())");
@@ -117,6 +125,7 @@ function createAnnouncement(array $data, PDO $pdo): bool
     return $stmt->execute();
 }
 
+// deleteAnnouncement deletes an announcement
 function deleteAnnouncement(int $id, PDO $pdo): void
 {
     $pdo->query("DELETE FROM troc.annonce WHERE id_annonce = '$id'");

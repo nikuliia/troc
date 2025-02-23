@@ -8,6 +8,9 @@ if (!userConnected()) {
     header("Location:index.php");
     exit();
 }
+
+// removing the user session to log them out
 logout();
+// redirects them to the main page and exits immediately
 header("Location:index.php");
 exit();

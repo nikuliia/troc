@@ -24,7 +24,6 @@
 $total = announcementCount($pdo);
 $items = $total ? announcementList($pdo, pagination: pagination($total)) : [];
 ?>
-<!--Место для кода-->
 
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../../_alerts.php') ?>
@@ -53,9 +52,12 @@ $items = $total ? announcementList($pdo, pagination: pagination($total)) : [];
         </tr>
         </thead>
         <tbody>
+
         <?php if (empty($items)) {
             echo '<tr><td class="text-center" colspan="14">There is no data yet.</td></tr>';
         }
+
+        // Loop through each announcement and display it in the table
         foreach ($items as $item) { ?>
             <tr>
                 <?= '<tr>',
