@@ -12,11 +12,6 @@ function userId(): ?int
     return $_SESSION['user']['id_membre'] ?? null;
 }
 
-function userEmail(): string
-{
-    return $_SESSION['user']['email'];
-}
-
 function userConnectedAdmin(): bool
 {
     if (!isset($_SESSION['user']['statut'])) {
