@@ -24,9 +24,12 @@ function userByEmail(string $email, PDO $pdo): ?array
     return $item;
 }
 
-function userList(PDO $pdo): array
+/** @param array{limit: int, offset: int} $pagination */
+function userList(PDO $pdo, array $pagination = []): array
 {
-    $stmt = $pdo->query("SELECT id_membre, pseudo, mdp, nom, prenom, telephone, email, civilite, statut, date_enregistrement FROM troc.membre ORDER BY id_membre DESC");
+    $query = "SELECT id_membre, pseudo, mdp, nom, prenom, telephone, email, civilite, statut, date_enregistrement FROM troc.membre ORDER BY id_membre DESC";
+    $query = paginated($query, $pagination);
+    $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } else {
@@ -34,6 +37,16 @@ function userList(PDO $pdo): array
     }
 
     return $items;
+}
+
+function usersCount(PDO $pdo, array $where = []): int
+{
+    $query = "SELECT count(*) FROM troc.membre";
+    if (!empty($where)) {
+        $query .= ' WHERE ' . implode(' AND ', $where);
+    }
+
+    return $pdo->query($query)->fetchColumn();
 }
 
 /**

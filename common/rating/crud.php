@@ -11,13 +11,15 @@ where user.id_membre = $currentUserId and a.id_annonce = $anouncementId";
     return $stmt->rowCount() > 0;
 }
 
-function ratingList(PDO $pdo, array $where = []): array
+/** @param array{limit: int, offset: int} $pagination */
+function ratingList(PDO $pdo, array $where = [], array $pagination = []): array
 {
     $query = "SELECT * FROM troc.note";
     if (!empty($where)) {
         $query .= " WHERE " . implode(" AND ", $where);
     }
     $query .= " ORDER BY id_note DESC";
+    $query = paginated($query, $pagination);
     $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -49,4 +51,14 @@ function createRating(array $data, PDO $pdo): bool
 function deleteRating(int $id, PDO $pdo): void
 {
     $pdo->query("DELETE FROM troc.note WHERE id_note = '$id'");
+}
+
+function ratingCount(PDO $pdo, array $where = []): int
+{
+    $query = "SELECT count(*) FROM troc.note";
+    if (!empty($where)) {
+        $query .= ' WHERE ' . implode(' AND ', $where);
+    }
+
+    return $pdo->query($query)->fetchColumn();
 }

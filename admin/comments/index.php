@@ -14,7 +14,8 @@
  * }> $items
  */
 
-$items = commentList($pdo);
+$total = commentsCount($pdo);
+$items = commentList($pdo, pagination: pagination($total));
 ?>
 
 <!--Место для кода-->
@@ -64,15 +65,7 @@ $items = commentList($pdo);
         <?php } ?>
         </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    <?php require_once('../../_pagination.php') ?>
 </div>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

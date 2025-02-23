@@ -21,7 +21,8 @@
  *      date_enregistrement: string,
  * }> $items
  */
-$items = announcementList($pdo);
+$total = announcementCount($pdo);
+$items = $total ? announcementList($pdo, pagination: pagination($total)) : [];
 ?>
 <!--Место для кода-->
 
@@ -63,7 +64,7 @@ $items = announcementList($pdo);
                 "<td>{$item['description_courte']}</td>",
                 "<td>{$item['description_longue']}</td>",
                 "<td>{$item['prix']}</td>",
-                "<td>{$item['photo']}</td>",
+                "<td><img class='img-fluid' style='max-width: 100px' src=" . FILES_URL . 'announcement/' . $item['photo'] ." alt=''></td>",
                 "<td>{$item['pays']}</td>",
                 "<td>{$item['ville']}</td>",
                 "<td>{$item['adresse']}</td>",
@@ -86,15 +87,7 @@ $items = announcementList($pdo);
         <?php } ?>
         </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    <?php require_once('../../_pagination.php') ?>
 </div>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

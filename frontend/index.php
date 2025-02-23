@@ -8,7 +8,8 @@ if (!empty($_GET['id_categorie'])) {
     $id = (int)$_GET['id_categorie'];
     $where[] = "categorie_id = $id";
 }
-$anouncments = announcementList($pdo, $where);
+$total = announcementCount($pdo, $where);
+$anouncments = announcementList($pdo, $where, pagination: pagination($total));
 ?>
     <?php require_once('../_alerts.php') ?>
     <div class="album py-5 bg-body-tertiary">
@@ -30,6 +31,13 @@ $anouncments = announcementList($pdo, $where);
                         </div>
                     </div>
                 <?php } ?>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <?php require_once('../_pagination.php') ?>
+                </div>
             </div>
         </div>
     </div>

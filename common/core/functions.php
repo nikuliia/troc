@@ -39,7 +39,8 @@ function lengthBetween(string $value, int $min, int $max): bool
     return $length >= $min && $length <= $max;
 }
 
-function saveUploadedFile(string $directory, string $fileInputName = 'file'): string {
+function saveUploadedFile(string $directory, string $fileInputName = 'file'): string
+{
     $directory = rtrim($directory, '/');
     // Проверяем, существует ли директория, если нет — создаем ее
     if (!is_dir($directory)) {
@@ -75,3 +76,48 @@ function logout(): void
 {
     unset($_SESSION['user']);
 }
+
+// region [Pagination]
+function pageQuery(int $page): string
+{
+    return http_build_query(array_merge($_GET, compact('page')));
+}
+
+function currentPage(): int
+{
+    return (int)($_GET['page'] ?? 1);
+}
+
+function pagination(int $total): array
+{
+    $page = currentPage();
+
+    // Осуществляем проверку корректности параметра страницы
+    if ($page < 1) {
+        $page = 1; // Если страница меньше 1, устанавливаем минимальное значение 1
+    }
+
+    // Вычисляем офсет
+    $offset = ($page - 1) * PER_PAGE;
+
+    // Ограничиваем офсет, чтобы не выходить за пределы общего количества
+    if ($offset >= $total) {
+        $offset = 0;
+    }
+
+    return [
+        'limit' => PER_PAGE, // Лимит - количество элементов на странице
+        'offset' => $offset,
+    ];
+}
+
+/** @param array{limit: int, offset: int} $pagination */
+function paginated(string $query, array $pagination): string
+{
+    if (empty($pagination)) {
+        return $query;
+    }
+
+    return $query . " LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
+}
+// endregion

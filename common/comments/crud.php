@@ -12,13 +12,15 @@ function commentById(int $id, PDO $pdo): ?array
     return $item;
 }
 
-function commentList(PDO $pdo, array $where): array
+/** @param array{limit: int, offset: int} $pagination */
+function commentList(PDO $pdo, array $where = [], array $pagination = []): array
 {
     $query = "SELECT * FROM troc.commentaire";
     if (!empty($where)) {
         $query .= " WHERE " . implode(" AND ", $where);
     }
     $query .= " ORDER BY id_commentaire DESC";
+    $query = paginated($query, $pagination);
     $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,6 +29,15 @@ function commentList(PDO $pdo, array $where): array
     }
 
     return $items;
+}
+function commentsCount(PDO $pdo, array $where = []): int
+{
+    $query = "SELECT count(*) FROM troc.commentaire";
+    if (!empty($where)) {
+        $query .= ' WHERE ' . implode(' AND ', $where);
+    }
+
+    return $pdo->query($query)->fetchColumn();
 }
 
 /**

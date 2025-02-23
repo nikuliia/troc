@@ -18,9 +18,9 @@
  *        date_enregistrement: string,
  * }> $items
  */
-
-$items = userList($pdo);
-//$items = $pdo->query("SELECT * FROM troc.membre ORDER BY id_membre DESC", PDO::FETCH_ASSOC);
+$page = currentPage();
+$total = usersCount($pdo);
+$items = userList($pdo, pagination: pagination($total));
 ?>
 <!--Место для кода-->
 
@@ -36,7 +36,6 @@ $items = userList($pdo);
         <tr>
             <th scope="col">User ID</th>
             <th scope="col">Nickname</th>
-            <th scope="col">Password</th>
             <th scope="col">Name</th>
             <th scope="col">Surname</th>
             <th scope="col">Phone #</th>
@@ -56,7 +55,6 @@ $items = userList($pdo);
                 <?= '<tr>',
                 "<td>{$item['id_membre']}</td>",
                 "<td>{$item['pseudo']}</td>",
-                "<td>{$item['mdp']}</td>",
                 "<td>{$item['nom']}</td>",
                 "<td>{$item['prenom']}</td>",
                 "<td>{$item['telephone']}</td>",
@@ -79,15 +77,7 @@ $items = userList($pdo);
         <?php } ?>
         </tbody>
     </table>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    <?php require_once('../../_pagination.php') ?>
 </div>
 <!--            Content end -->
 <?php require_once('../includes/_footer.php'); ?>

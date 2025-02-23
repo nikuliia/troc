@@ -12,11 +12,15 @@ function categoryById(int $id, PDO $pdo): ?array
     return $item;
 }
 
-function categoryList(PDO $pdo, array $orderBy = ['id_categorie', 'DESC']): array
+/** @param array{limit: int, offset: int} $pagination */
+function categoryList(PDO $pdo, array $orderBy = ['id_categorie', 'DESC'], array $pagination = []): array
 {
     $query = "SELECT id_categorie, titre, motscles FROM troc.categorie";
     if (!empty($orderBy)) {
         $query .= " ORDER BY $orderBy[0] $orderBy[1]";
+    }
+    if (!empty($pagination)) {
+        $query .= " LIMIT {$pagination['limit']} OFFSET {$pagination['offset']}";
     }
     $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
@@ -26,6 +30,16 @@ function categoryList(PDO $pdo, array $orderBy = ['id_categorie', 'DESC']): arra
     }
 
     return $items;
+}
+
+function categoriesCount(PDO $pdo, array $where = []): int
+{
+    $query = "SELECT count(*) FROM troc.categorie";
+    if (!empty($where)) {
+        $query .= ' WHERE ' . implode(' AND ', $where);
+    }
+
+    return $pdo->query($query)->fetchColumn();
 }
 
 function categoriesWithExistingAnnouncements(PDO $pdo): array

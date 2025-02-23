@@ -12,13 +12,15 @@ function announcementById(int $id, PDO $pdo): ?array
     return $item;
 }
 
-function announcementList(PDO $pdo, array $where = []): array
+/** @param array{limit: int, offset: int} $pagination */
+function announcementList(PDO $pdo, array $where = [], array $pagination = []): array
 {
     $query = "SELECT * FROM troc.annonce";
     if (!empty($where)) {
         $query .= ' WHERE ' . implode(' AND ', $where);
     }
     $query .= ' ORDER BY id_annonce DESC';
+    $query = paginated($query, $pagination);
     $stmt = $pdo->query($query);
     if ($stmt->rowCount() > 0) {
         $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,6 +29,16 @@ function announcementList(PDO $pdo, array $where = []): array
     }
 
     return $items;
+}
+
+function announcementCount(PDO $pdo, array $where = []): int
+{
+    $query = "SELECT count(*) FROM troc.annonce";
+    if (!empty($where)) {
+        $query .= ' WHERE ' . implode(' AND ', $where);
+    }
+
+    return $pdo->query($query)->fetchColumn();
 }
 
 /**
