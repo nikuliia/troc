@@ -9,7 +9,8 @@ $categories = categoriesWithExistingAnnouncements($pdo);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Blog Template · Bootstrap v5.3</title>
+    <link rel="icon" href="<?= 'http://localhost/assets/favicon.svg' ?>" type="assets/svg+xml">
+    <title>TROC</title>
     <link href="../assets/bootstrap/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
