@@ -3,6 +3,8 @@
 <?php require_once('../../common/categories/crud.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// deleting a category
 try {
     deleteCategory((int)$_GET['id'], $pdo);
     alertSuccess('Category successfully deleted.');

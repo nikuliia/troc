@@ -8,6 +8,8 @@
  *      avis: string,
  *  } $data
 */
+
+// validation functions (checking if a user enters all the data in the correct format)
 function isValid(array $data): bool
 {
     $valid = true;

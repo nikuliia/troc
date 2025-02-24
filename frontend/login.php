@@ -46,7 +46,7 @@ if (userConnected()) { // Redirecting logged-in user
     <form method="post">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <div class="form-floating">
-<!-- Keeps the entered email if the form is submitted incorrectly -->
+            <!-- Keeps the entered email if the form is submitted incorrectly -->
             <input name="email" type="email" value="<?= $_POST['email'] ?? '' ?>" class="form-control"
                    id="floatingInput-email" placeholder="email">
             <label for="floatingInput-email">email</label>

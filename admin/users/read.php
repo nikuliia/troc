@@ -18,6 +18,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
+
+// view the existing user data
 $item = userById((int)$_GET['id'], $pdo);
 ?>
 

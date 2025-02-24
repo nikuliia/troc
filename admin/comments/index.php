@@ -18,7 +18,7 @@ $total = commentsCount($pdo);
 $items = commentList($pdo, pagination: pagination($total));
 ?>
 
-<!--Место для кода-->
+<!-- comments page -->
 
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../../_alerts.php') ?>

@@ -11,6 +11,9 @@
  *       motscles: string,
  *  }|null $item
  */
+
+// viewing a category by admin
+
 $item = categoryById((int)$_GET['id'], $pdo);
 ?>
 

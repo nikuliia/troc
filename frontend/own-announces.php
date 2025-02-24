@@ -3,6 +3,9 @@
 <?php require_once('../common/announcement/crud.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// Displaying a user's own announcements in a web application. It ensures the user is logged in, fetches their announcements,
+// and displays them in a structured card layout with options to view, edit, or delete each announcement.
 if (!userConnected()) {
     header('Location: login.php');
     exit();

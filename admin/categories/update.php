@@ -11,6 +11,8 @@
  *       motscles: string,
  *  }|null $item
  */
+
+// updating a categorie
 $item = categoryById((int)$_GET['id'], $pdo);
 
 if (is_null($item)) {

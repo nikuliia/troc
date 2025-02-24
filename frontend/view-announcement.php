@@ -6,6 +6,9 @@
 /**
  * @var PDO $pdo
  */
+
+// Displaying a single announcement along with its comments and a form to allow users to leave a comment.
+// It ensures proper validation, security, and user interaction.
 if (empty($_GET['id_annonce'])) {
     header('Location: index.php');
     exit();

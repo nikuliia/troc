@@ -4,6 +4,8 @@
 <?php require_once('../../common/categories/validation.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// creating a category
 if (!empty($_POST) && isValid($_POST)) {
     if (createCategory($_POST, $pdo)) {
         alertSuccess('Category successfully created.');

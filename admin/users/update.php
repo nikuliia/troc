@@ -19,6 +19,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
+
+// updating the existing user data
 $item = userById((int)$_GET['id'], $pdo);
 
 if (is_null($item)) {

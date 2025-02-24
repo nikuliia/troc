@@ -21,6 +21,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
+
+// updating an announcement
 $item = announcementById((int)$_GET['id'], $pdo);
 if (is_null($item)) {
     alertError('Does not exist.');

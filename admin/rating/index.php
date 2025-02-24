@@ -24,7 +24,8 @@
 $total = ratingCount($pdo);
 $items = ratingList($pdo, pagination: pagination($total));
 ?>
-<!--Место для кода-->
+
+<!-- rating page -->
 
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../../_alerts.php') ?>

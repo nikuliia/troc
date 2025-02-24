@@ -10,6 +10,7 @@
  *  }|null $item
 * ?? '' */
 ?>
+<!-- inputs to manipulate ratings -->
 <div class="form-floating mb-3">
     <input type="text" name="membre_id1" value="<?= $_POST['membre_id1'] ?? $item['membre_id1'] ?? '' ?>" class="form-control" id="id-User ID1" placeholder="User ID1">
     <label for="id-User ID1">User ID1</label>

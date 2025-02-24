@@ -25,6 +25,7 @@ $total = announcementCount($pdo);
 $items = $total ? announcementList($pdo, pagination: pagination($total)) : [];
 ?>
 
+<!-- announcements page -->
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../../_alerts.php') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">

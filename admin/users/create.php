@@ -18,6 +18,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
+
+// creating a new user
 if (!empty($_POST) && isValid($_POST)) {
     if (createUser($_POST, $pdo)) {
         alertSuccess('User successfully created.');

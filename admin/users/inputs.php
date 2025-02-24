@@ -14,6 +14,8 @@
  *  }|null $item
  */
 ?>
+
+<!-- inputs for creating a new user -->
 <div class="form-floating mb-3">
     <input type="text" name="pseudo" value="<?= $_POST['pseudo'] ?? $item['pseudo'] ?? '' ?>" class="form-control" id="id-pseudo" placeholder="nickname">
     <label for="id-pseudo">Nickname</label>

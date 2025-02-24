@@ -16,25 +16,30 @@
  *       categorie_id: int,
  *       date_enregistrement: string,
  *  }|null $item
- ?? '' */
+ * ?? '' */
 ?>
 
 <!-- Form Fields with Pre-Filled Data -->
 <!-- Each input field follows this pattern:-->
 <div class="form-floating mb-3">
-    <input name="titre" type="text" value="<?= $_POST['titre'] ?? $item['titre'] ?? '' ?>" class="form-control" id="id-titre" placeholder="titre">
+    <input name="titre" type="text" value="<?= $_POST['titre'] ?? $item['titre'] ?? '' ?>" class="form-control"
+           id="id-titre" placeholder="titre">
     <label for="id-titre">Title</label>
 </div>
 <div class="form-floating mb-3">
-    <input name="description_courte" type="text" value="<?= $_POST['description_courte'] ?? $item['description_courte'] ?? '' ?>" class="form-control" id="id-description_courte" placeholder="description_courte">
+    <input name="description_courte" type="text"
+           value="<?= $_POST['description_courte'] ?? $item['description_courte'] ?? '' ?>" class="form-control"
+           id="id-description_courte" placeholder="description_courte">
     <label for="id-description_courte">Short desc</label>
 </div>
 <div class="form-floating mb-3">
-    <textarea class="form-control" style="resize: none;" name="description_longue" id="id-description_longue" rows="4"><?= $_POST['description_longue'] ?? $item['description_longue'] ?? '' ?></textarea>
+    <textarea class="form-control" style="resize: none;" name="description_longue" id="id-description_longue"
+              rows="4"><?= $_POST['description_longue'] ?? $item['description_longue'] ?? '' ?></textarea>
     <label for="id-description_longue">Longue desc</label>
 </div>
 <div class="form-floating mb-3">
-    <input name="prix" type="text" value="<?= $_POST['prix'] ?? $item['prix'] ?? '' ?>" class="form-control" id="id-prix" placeholder="prix">
+    <input name="prix" type="text" value="<?= $_POST['prix'] ?? $item['prix'] ?? '' ?>" class="form-control"
+           id="id-prix" placeholder="prix">
     <label for="id-prix">Price</label>
 </div>
 
@@ -52,7 +57,7 @@
     <select class="form-select" name="pays" id="id-pays">
         <?php foreach (AVAILABLE_COUNTRIES as $country) { ?>
             <option value="<?= $country ?>"
-                <?= $country === ($_POST['pays'] ?? $item['pays'] ?? '') ? ' selected' : ''?>>
+                <?= $country === ($_POST['pays'] ?? $item['pays'] ?? '') ? ' selected' : '' ?>>
                 <?= $country ?>
             </option>
         <?php } ?>
@@ -61,15 +66,18 @@
 </div>
 
 <div class="form-floating mb-3">
-    <input name="ville" type="text" value="<?= $_POST['ville'] ?? $item['ville'] ?? '' ?>" class="form-control" id="id-ville" placeholder="ville">
+    <input name="ville" type="text" value="<?= $_POST['ville'] ?? $item['ville'] ?? '' ?>" class="form-control"
+           id="id-ville" placeholder="ville">
     <label for="id-ville">City</label>
 </div>
 <div class="form-floating mb-3">
-    <input name="adresse" type="text" value="<?= $_POST['adresse'] ?? $item['adresse'] ?? '' ?>" class="form-control" id="id-adresse" placeholder="adresse">
+    <input name="adresse" type="text" value="<?= $_POST['adresse'] ?? $item['adresse'] ?? '' ?>" class="form-control"
+           id="id-adresse" placeholder="adresse">
     <label for="id-adresse">Address</label>
 </div>
 <div class="form-floating mb-3">
-    <input name="cp" type="text" value="<?= $_POST['cp'] ?? $item['cp'] ?? '' ?>" class="form-control" id="id-cp" placeholder="cp">
+    <input name="cp" type="text" value="<?= $_POST['cp'] ?? $item['cp'] ?? '' ?>" class="form-control" id="id-cp"
+           placeholder="cp">
     <label for="id-cp">Zip</label>
 </div>
 
@@ -78,7 +86,7 @@
     <select class="form-select" name="categorie_id" id="id-categorie_id">
         <?php foreach (getListForSelector($pdo) as $id => $title) { ?>
             <option value="<?= $id ?>"
-                <?= $id === ($_POST['categorie_id'] ?? $item['categorie_id'] ?? '') ? ' selected' : ''?>>
+                <?= $id === ($_POST['categorie_id'] ?? $item['categorie_id'] ?? '') ? ' selected' : '' ?>>
                 <?= $title ?>
             </option>
         <?php } ?>

@@ -18,19 +18,23 @@
 <!-- A form section for user details. -->
 <!--It dynamically populates fields with previously entered values (from $_POST) or existing database records ($item)-->
 <div class="form-floating mb-3">
-    <input type="text" name="pseudo" value="<?= $_POST['pseudo'] ?? $item['pseudo'] ?? '' ?>" class="form-control" id="id-pseudo" placeholder="nickname">
+    <input type="text" name="pseudo" value="<?= $_POST['pseudo'] ?? $item['pseudo'] ?? '' ?>" class="form-control"
+           id="id-pseudo" placeholder="nickname">
     <label for="id-pseudo">Nickname</label>
 </div>
 <div class="form-floating mb-3">
-    <input type="text" name="nom" value="<?= $_POST['nom'] ?? $item['nom'] ?? '' ?>" class="form-control" id="id-nom" placeholder="name">
+    <input type="text" name="nom" value="<?= $_POST['nom'] ?? $item['nom'] ?? '' ?>" class="form-control" id="id-nom"
+           placeholder="name">
     <label for="id-nom">Name</label>
 </div>
 <div class="form-floating mb-3">
-    <input type="text" name="prenom" value="<?= $_POST['prenom'] ?? $item['prenom'] ?? '' ?>" class="form-control" id="id-prenom" placeholder="surname">
+    <input type="text" name="prenom" value="<?= $_POST['prenom'] ?? $item['prenom'] ?? '' ?>" class="form-control"
+           id="id-prenom" placeholder="surname">
     <label for="id-prenom">Surname</label>
 </div>
 <div class="form-floating mb-3">
-    <input type="text" name="telephone" value="<?= $_POST['telephone'] ?? $item['telephone'] ?? '' ?>" class="form-control" id="id-telephone" placeholder="phone number">
+    <input type="text" name="telephone" value="<?= $_POST['telephone'] ?? $item['telephone'] ?? '' ?>"
+           class="form-control" id="id-telephone" placeholder="phone number">
     <label for="id-telephone">Phone number</label>
 </div>
 <div class="form-floating mb-3">

@@ -13,6 +13,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
+
+// comments viewing
 $item = commentById((int)$_GET['id'], $pdo);
 ?>
 

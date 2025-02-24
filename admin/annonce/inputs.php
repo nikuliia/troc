@@ -19,6 +19,8 @@
  *  }|null $item
  ?? '' */
 ?>
+
+<!-- inputs to enter the data -->
 <div class="form-floating mb-3">
     <input name="titre" type="text" value="<?= $_POST['titre'] ?? $item['titre'] ?? '' ?>" class="form-control" id="id-titre" placeholder="titre">
     <label for="id-titre">Title</label>

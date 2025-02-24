@@ -4,12 +4,14 @@
 <?php require_once('../common/comments/crud.php') ?>
 <?php
 /** @var PDO $pdo */
-$anounceId = (int)$_GET['id_annonce'];
-if (!userConnected() || !$anounceId) {
+
+// viewing an announcement
+$announceId = (int)$_GET['id_annonce'];
+if (!userConnected() || !$announceId) {
     header("Location:index.php");
     exit();
 }
-$item = announcementById($anounceId, $pdo);
+$item = announcementById($announceId, $pdo);
 if ($item['membre_id'] !== userId()) {
     header("Location:index.php");
     exit();

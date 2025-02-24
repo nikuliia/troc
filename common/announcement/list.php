@@ -1,4 +1,7 @@
 <?php
+
+// PHP script defines two functions that interact with a MySQL database (via PDO) to fetch announcement data
+// from the troc.annonce table
 function getAnounceListForSelector(PDO $pdo): array
 {
     $stmt = $pdo->query("SELECT id_annonce, titre FROM troc.annonce ORDER BY titre");

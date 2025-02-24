@@ -3,15 +3,17 @@
 <?php require_once('../common/announcement/validation.php') ?>
 <?php
 /** @var PDO $pdo */
-$anounceId = (int)$_GET['id_annonce'];
-if (!userConnected() || !$anounceId) {
+
+// editing an announcement
+$announceId = (int)$_GET['id_annonce'];
+if (!userConnected() || !$announceId) {
     header("Location:index.php");
     exit();
 }
 if (!empty($_POST)) {
     $data = $_POST;
     $data['membre_id'] = userId();
-    $data['id_annonce'] = $anounceId;
+    $data['id_annonce'] = $announceId;
     $isValid = isValid($data);
     $sentFile = !empty($_FILES['photo']['name']);
     if ($sentFile) {
@@ -19,10 +21,13 @@ if (!empty($_POST)) {
     }
 
     if ($isValid) {
-        $data['photo'] = saveUploadedFile(
-            directory: FILES_PATH . 'announcement/',
-            fileInputName: 'photo',
-        );
+        $sentFile = !empty($_FILES['photo']['name']);
+       if ($sentFile && isValidPhoto()){
+           $data['photo'] = saveUploadedFile(
+               directory: FILES_PATH . 'announcement/',
+               fileInputName: 'photo',
+           );
+       }
         if (updateAnnouncement($data, $pdo)) {
             alertSuccess('Announce updated succesfully');
             header("Location:" . URL_FRONTEND . "own-announces.php");
@@ -30,7 +35,7 @@ if (!empty($_POST)) {
         }
     }
 }
-$item = announcementById($anounceId, $pdo);
+$item = announcementById($announceId, $pdo);
 if ($item['membre_id'] !== userId()) {
     header("Location:index.php");
     exit();

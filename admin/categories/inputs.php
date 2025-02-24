@@ -6,6 +6,8 @@
  *  }|null $item
  */
 ?>
+
+<!-- category inputs -->
 <div class="form-floating mb-3">
     <input type="text" name="titre" value="<?= $_POST['titre'] ?? $item['titre'] ?? '' ?>" class="form-control" id="id-titre" placeholder="Category name">
     <label for="id-titre">Category title</label>

@@ -8,16 +8,18 @@
  *        avis: string,
  *        date_enregistrement: string,
  *  }|null $item
-* ?? '' */
+ * ?? '' */
 ?>
 
 <!-- The part of a user review form that allows users to submit a rating (note) and review (avis) -->
 <div class="form-floating mb-3">
-    <input type="number" min="1" max="5" name="note" value="<?= $_POST['note'] ?? $item['note'] ?? '5' ?>" class="form-control" id="id-rating" placeholder="Rating">
+    <input type="number" min="1" max="5" name="note" value="<?= $_POST['note'] ?? $item['note'] ?? '5' ?>"
+           class="form-control" id="id-rating" placeholder="Rating">
     <label for="id-rating">Rating (note)</label>
 </div>
 <div class="form-floating mb-3">
-    <input type="text" name="avis" value="<?= $_POST['avis'] ?? $item['avis'] ?? '' ?>" class="form-control" id="id-review" placeholder="Review">
+    <input type="text" name="avis" value="<?= $_POST['avis'] ?? $item['avis'] ?? '' ?>" class="form-control"
+           id="id-review" placeholder="Review">
     <label for="id-review">Review (avis)</label>
 </div>
 <button class="btn btn-outline-success">Save</button>

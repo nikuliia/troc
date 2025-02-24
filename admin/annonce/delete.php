@@ -3,6 +3,8 @@
 <?php require_once('../../common/announcement/crud.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// deleting an announcement
 try {
     deleteAnnouncement((int)$_GET['id'], $pdo);
     alertSuccess('Announcement successfully deleted.');

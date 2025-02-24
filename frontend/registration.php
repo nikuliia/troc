@@ -4,6 +4,8 @@
 <?php
 
 /** @var PDO $pdo */
+
+// registration page for new users
 if (!empty($_POST) && isValid($_POST)) {
     $user = $_POST;
     if (createUser($_POST, $pdo)) {

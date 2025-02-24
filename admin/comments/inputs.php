@@ -10,6 +10,8 @@
  *  }|null $item
  */
 ?>
+
+<!-- inputs to create a comment -->
 <div class="form-floating mb-3">
     <select class="form-select" name="membre_id" id="id-membre_id">
         <?php foreach (getUserListForSelector($pdo) as $id => $title) { ?>
@@ -30,8 +32,5 @@
     <input type="text" name="commentaire" value="<?= $_POST['commentaire'] ?? $item['commentaire'] ?? '' ?>" class="form-control" id="id-commentaire" placeholder="commentaire">
     <label for="id-commentaire">Comment</label>
 </div>
-<!--<div class="form-floating mb-3">-->
-<!--    <input type="date" name="date_enregistrement" value="--><?php //= $item['date_enregistrement'] ?? '' ?><!--" class="form-control" id="id-date_enregistrement" placeholder="date_enregistrement">-->
-<!--    <label for="id-date_enregistrement"></label>-->
-<!--</div>-->
+
 <button class="btn btn-outline-success">Save</button>

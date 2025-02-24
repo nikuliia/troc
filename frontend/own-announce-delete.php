@@ -3,6 +3,8 @@
 <?php require_once('../common/announcement/validation.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// handling the deletion of an announcement while ensuring proper authentication and ownership verification
 $announceId = (int)$_GET['id_annonce'];
 if (!$announceId || !userConnected()) {
     header("Location:index.php");
@@ -15,3 +17,5 @@ if ($item['membre_id'] !== userId()) {
     exit();
 }
 deleteAnnouncement($announceId, $pdo);
+header("Location:" . URL_FRONTEND . "own-announces.php");
+exit();

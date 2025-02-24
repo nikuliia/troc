@@ -5,6 +5,8 @@
 <?php require_once('../admin-rules.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// statistics
 $topUsersByAvgRating = topUsersByAvgRating($pdo, limit: 5);
 $topUsersByCountAnnonce = topUsersByCountAnnonce($pdo, limit: 5);
 $topOldestAnnouncements = topOldestAnnouncements($pdo, limit: 5);

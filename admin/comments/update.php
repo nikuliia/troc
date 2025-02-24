@@ -13,6 +13,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
+
+// comments update
 $item = commentById((int)$_GET['id'], $pdo);
 if (is_null($item)) {
     alertError('Does not exist.');
@@ -27,7 +29,7 @@ if (!empty($_POST) && isValid($_POST)) {
         header('Location: index.php');
         exit();
     }
-    // save item
+    // error alert
     alertError('Something went wrong while updating a comment.');
 
 }

@@ -11,10 +11,10 @@
  * }> $items
  */
 
+// categories page
 $total = categoriesCount($pdo);
 $items = categoryList($pdo, pagination: pagination($total));
 ?>
-<!--Место для кода-->
 
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../../_alerts.php') ?>

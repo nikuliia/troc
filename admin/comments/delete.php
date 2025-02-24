@@ -3,6 +3,8 @@
 <?php require_once('../../common/comments/crud.php') ?>
 <?php
 /** @var PDO $pdo */
+
+// delete a comment
 try {
     deleteComment((int)$_GET['id'], $pdo);
     alertSuccess('Comment successfully deleted.');

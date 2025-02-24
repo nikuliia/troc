@@ -13,6 +13,8 @@
  *       date_enregistrement: string,
  *  }|null $item
  */
+
+// Viewing rating
 $stmt = $pdo->query(sprintf("SELECT id_note, membre_id1, membre_id2, note, avis, date_enregistrement FROM troc.note WHERE id_note = %d", (int)$_GET['id']));
 
 if ($stmt->rowCount() > 0) {

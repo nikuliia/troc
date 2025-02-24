@@ -1,4 +1,7 @@
 <?php
+
+// This script defines three functions that interact with a MySQL database (via PDO) to fetch and analyze user data
+// from the troc.membre and troc.annonce tables
 function getUserListForSelector(PDO $pdo): array
 {
     $stmt = $pdo->query("SELECT id_membre, pseudo FROM troc.membre ORDER BY pseudo");

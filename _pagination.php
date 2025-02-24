@@ -3,6 +3,8 @@
  * @var int $page
  * @var int $total
  */
+
+// pagination
 if (!isset($total)) {
     throw new Exception('$page or $total or $perPage must be set');
 }

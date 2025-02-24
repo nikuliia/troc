@@ -9,7 +9,7 @@ $categories = categoriesWithExistingAnnouncements($pdo);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <link rel="icon" href="<?= 'http://localhost/assets/favicon.svg' ?>" type="assets/svg+xml">
+    <link rel="icon" href="../assets/favicon.svg" sizes="any" type="image/svg+xml">
     <title>TROC</title>
     <link href="../assets/bootstrap/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -25,7 +25,7 @@ $categories = categoriesWithExistingAnnouncements($pdo);
                     <use xlink:href="#bootstrap"></use>
                 </svg>
             </a>
-<!-- We dynamically list categories that contain at least one announcement -->
+            <!-- We dynamically list categories that contain at least one announcement -->
             <?php if (!empty($categories)) { ?>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="<?= URL_FRONTEND, 'index.php' ?>" class="nav-link px-2">Main</a></li>
@@ -36,7 +36,7 @@ $categories = categoriesWithExistingAnnouncements($pdo);
                     <?php } ?>
                 </ul>
             <?php } ?>
-<!-- Dashboard Link is available for Admin Users only -->
+            <!-- Dashboard Link is available for Admin Users only -->
             <?php if (userConnectedAdmin()) { ?>
                 <div class="text-end me-2">
                     <a title="You admin!" href="<?= URL_ADMIN, 'dashboard/index.php' ?>"
@@ -44,11 +44,11 @@ $categories = categoriesWithExistingAnnouncements($pdo);
                 </div>
             <?php } ?>
             <div class="dropdown text-end">
-<!-- Dropdown Menu for Logged-In Users -->
+                <!-- Dropdown Menu for Logged-In Users -->
                 <?php if (userConnected()) { ?>
                     <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                        data-bs-toggle="dropdown" aria-expanded="false">
-<!-- Shows a profile picture if a user is connected or an admin icon if admin is connected -->
+                        <!-- Shows a profile picture if a user is connected or an admin icon if admin is connected -->
                         <?php if (userConnectedAdmin()) { ?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -64,7 +64,8 @@ $categories = categoriesWithExistingAnnouncements($pdo);
                     <ul class="dropdown-menu text-small" style="">
                         <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'own-announce-add.php' ?>">Add
                                 annonce...</a></li>
-                        <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'own-announces.php' ?>">My announcements</a>
+                        <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'own-announces.php' ?>">My
+                                announcements</a>
                         </li>
                         <li><a class="dropdown-item" href="<?= URL_FRONTEND, 'profile.php' ?>">Profile</a></li>
                         <li>

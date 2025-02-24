@@ -49,7 +49,7 @@ if (!empty($_POST)) {
 <div class="container">
     <?php require_once('../_alerts.php') ?>
     <form method="post">
-        <?php require_once('includes/rating-inputs.php')?>
+        <?php require_once('includes/rating-inputs.php') ?>
     </form>
 </div>
 <?php require_once('includes/_footer.php') ?>

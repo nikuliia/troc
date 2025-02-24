@@ -4,6 +4,7 @@
 <?php require_once('../admin-rules.php') ?>
 <?php
 /** @var PDO $pdo */
+
 if (!empty($_POST) && isValid($_POST) && createRating($_POST, $pdo)) {
     alertSuccess('Rating created successfully.');
     header('Location: index.php');

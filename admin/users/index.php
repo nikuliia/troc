@@ -18,11 +18,12 @@
  *        date_enregistrement: string,
  * }> $items
  */
+
+// user's page
 $page = currentPage();
 $total = usersCount($pdo);
 $items = userList($pdo, pagination: pagination($total));
 ?>
-<!--Место для кода-->
 
 <?php require_once('../includes/_header.php') ?>
 <?php require_once('../../_alerts.php') ?>

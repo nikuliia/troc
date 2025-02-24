@@ -6,6 +6,7 @@ require_once('../common/rating/crud.php');
 
 /** @var PDO $pdo */
 
+// Profile updating
 if(!userConnected()){
     header('location:login.php');
     exit();
